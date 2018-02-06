@@ -83,5 +83,3 @@ test:
 production:
   <<: *default
   database: sahate_production
-  username: sahate
-  password: <%= ENV['SAHATE_DATABASE_PASSWORD'] %>
