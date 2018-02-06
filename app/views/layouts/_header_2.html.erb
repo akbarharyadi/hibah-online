@@ -1,14 +1,11 @@
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
   <li>
-    <a href="#!">one</a>
-  </li>
-  <li>
-    <a href="#!">two</a>
+    <%= link_to ('PROFILE'), edit_user_registration_url %>
   </li>
   <li class="divider"></li>
   <li>
-    <a href="#!">three</a>
+    <%= link_to ('LOGOUT'), destroy_user_session_url, data: {method: :delete} %>
   </li>
 </ul>
 <nav>
