@@ -6,10 +6,13 @@
   <li class="divider"></li>
   <li>
     <%= link_to ('LOGOUT'), destroy_user_session_url, data: {method: :delete} %>
-  </li>
+  </li>   
 </ul>
 <nav>
   <div class="nav-wrapper">
+    <a class="button-collapse" data-activates="slide-out" data-turbolinks="false" href="#" id="sidenav">
+      <i class="material-icons">menu</i>
+    </a>
     <a href="/" class="brand-logo">
       <%= image_tag("logo.png", height: '65', style:"margin-top: 0px;") %>
     </a>
