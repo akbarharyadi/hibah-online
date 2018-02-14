@@ -1,0 +1,91 @@
+tabel utama
+- logo
+- gambar
+- footer_text
+
+tabel tahapan
+- tahap
+- judul
+- deskripsi
+
+tabel tentang
+- judul
+- deskripsi
+
+tabel peraturan
+- peraturan
+- file
+
+tabel lapor
+- nama
+- email
+- subjek
+- pesan
+- status
+
+tabel user
+- 
+
+tabel profile
+- Nama lengkap (OPTIONAL)
+- No Telepon (OPTIONAL)
+- foto (OPTIONAL)
+- Organisasi (OPTIONAL)
+- role
+- dinas_id
+
+Tabel Dinas
+- kode
+- nama
+- alamat
+
+tabel role
+- role (pemohon, bupati, TU Setda, SKPD, TAPD)
+
+tabel hibah
+- Nama (Individu atau organisasi)
+- Alamat
+- Judul Kegiatan
+- Latar Belakang
+- Maksud dan Tujuan
+- user_id
+- on_process
+
+tabel proposal
+- file
+- hibah_id
+
+tabel dana
+- deskripsi
+- jumlah
+- hibah_id
+
+tabel foto
+- file
+- hibah_id
+
+tabel seleksi
+- status (0: belum seleksi, 1: berhasil seleksi, 3: gagal seleksi, 4:koreksi) 
+- hasil
+- user_id
+- hibah_id
+
+tabel disposisi
+- status (0: belum disposisi, 1: berhasil disposisi, 2: gagal, 4:koreksi)
+- hasil
+- dinas_id
+- user_id
+- seleksi_id
+
+tabel verifikasi
+- status (0: belum verifikasi, 1: sah, 2: tidak sah)
+- hasil
+- user_id
+- disposisi_id
+
+tabel rekomendasi
+- hasil
+- jumlah
+- persetujuan
+- verifikasi_id
+

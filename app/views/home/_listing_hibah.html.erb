@@ -1,0 +1,32 @@
+<% unless smart_listing.empty? %>
+  <% smart_listing.collection.each do |hibah| %>
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image">
+          <%= image_tag(hibah.gambar.url, class:"materialboxed") %>
+        </div>
+        <div class="card-content">
+          <p class="black-text strong">
+            <%= link_to hibah.judul_kegiatan, show_hibah_path(id: hibah.id) %>
+          </p>
+          <hr />
+          <p>
+            <strong>Later Belakang :</strong>
+            <br /><%= truncate(hibah.latar_belakang, length: 100, omission: "...") %>
+          </p>
+          <p>
+            <strong>Tahap :</strong>
+            <br /><%= hibah.status_hibah %>
+          </p>
+          <p>
+            <strong>Nilai yang diajukan :</strong>
+            <br /><%= number_to_currency hibah.danas.sum(:jumlah), unit: "Rp. ", separator: ",", delimiter: "." %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= smart_listing.paginate %>
+<% else %>
+  <p>No Record Found!</p>
+<% end %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nama: MyString
+  alamat: MyText
+  judul_kegiatan: MyText
+  latar_belakang: MyText
+  maksud_dan_tujuan: MyText
+  user_id: 1
+  on_process: 1
+
+two:
+  nama: MyString
+  alamat: MyText
+  judul_kegiatan: MyText
+  latar_belakang: MyText
+  maksud_dan_tujuan: MyText
+  user_id: 1
+  on_process: 1

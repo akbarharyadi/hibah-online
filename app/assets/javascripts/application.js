@@ -11,10 +11,15 @@
 // about supported directives.
 //
 //= require jquery
-//= require rails-ujs
+//= require jquery_ujs
+//= require ahoy
+//= require smart_listing
 //= require turbolinks
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
 //= require materialize-form
-//= require datatables
+//= require rails.validations
+//= require rails.validations.simple_form
+//= require cocoon
+//= require autoNumeric.min
 //= require init

@@ -1,0 +1,41 @@
+<div class="card-panel">
+  <div class="row">
+    <h5 class="header2">
+      Daftar Hibah
+    </h5>
+     <div class="divider"></div>
+
+    <div class="row">
+      <div class="col m12 s12" style="padding:10px;">
+        <%= link_to raw('<i class="material-icons left">add_circle_outline</i> Tambah Hibah'), new_hibah_path, class: 'right' %> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m12">
+        <table class="bordered highlight responsive-table">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Judul kegiatan</th>
+              <th>Tahap</th>
+              <th></th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <% @hibahs.each do |hibah| %>
+              <tr>
+                <td><%= hibah.nama %></td>
+                <td><%= hibah.judul_kegiatan %></td>
+                <td><%= hibah.status_hibah %></td>
+                <td><%= link_to raw('<i class="small material-icons">open_in_new</i>'), hibah %>
+                <%= link_to raw('<i class="small material-icons">edit</i>'), edit_hibah_path(hibah) %>
+              <%= link_to raw('<i class="small material-icons">delete</i>'), hibah, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

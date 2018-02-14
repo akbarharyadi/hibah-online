@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hibah: one
+  jumlah: 1.5
+
+two:
+  hibah: two
+  jumlah: 1.5

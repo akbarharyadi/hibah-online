@@ -39,8 +39,13 @@ gem 'materialize-form'
 gem 'rails_12factor'
 gem 'jquery-datatables'
 gem 'high_voltage'
-
-
+gem "administrate"
+gem 'ahoy_matey'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+gem "cocoon"
+gem 'carrierwave', '~> 1.0'
+gem "smart_listing"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
