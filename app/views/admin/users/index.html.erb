@@ -35,7 +35,7 @@
                   <%= user.dina.name if user.dina_id.present? %>
                 </td>
                 <td>
-                  <% unless user.role.id == 1 %>
+                  <% unless user.role_id == 1 %>
                     <%= link_to raw('<i class="small material-icons">edit</i>'), edit_admin_user_url(user) %>
                     <%= link_to raw('<i class="small material-icons">delete</i>'), admin_user_url(user), method: :delete, data: { confirm: 'Are you sure?' } %>
                   <% end %>
