@@ -29,7 +29,7 @@
                   <%= user.email %>
                 </td>
                 <td>
-                  <%= user.role.name %>
+                  <%= user.role.name if user.role_id.present? %>
                 </td>
                 <td>
                   <%= user.dina.name if user.dina_id.present? %>
