@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nama_lengkap: MyString
+  no_telp: MyString
+  foto: MyString
+  jenis_kelamin: 1
+  organisasi: MyString
+  role_id: 1
+  dinas_id: 1
+
+two:
+  nama_lengkap: MyString
+  no_telp: MyString
+  foto: MyString
+  jenis_kelamin: 1
+  organisasi: MyString
+  role_id: 1
+  dinas_id: 1

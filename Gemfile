@@ -48,6 +48,7 @@ gem 'carrierwave', '~> 1.0'
 gem "smart_listing"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'omniauth-google-oauth2'
 
 
 group :development, :test do

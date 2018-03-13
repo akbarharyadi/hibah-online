@@ -1,0 +1,44 @@
+<div class="card-panel">
+  <div class="row">
+    <h5 class="header2">
+      Daftar Dinas
+    </h5>
+    <div class="divider"></div>
+
+    <div class="row">
+      <div class="col m12 s12" style="padding:10px;">
+        <%= link_to raw('<i class="material-icons left">add_circle_outline</i> Tambah Dinas'), new_admin_dina_path, class: 'right' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m12">
+        <table class="bordered highlight responsive-table">
+          <thead>
+            <tr>
+              <th>Kode</th>
+              <th>Nama</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @dinas.each do |dina| %>
+              <tr>
+                <td>
+                  <%= dina.code %>
+                </td>
+                <td>
+                  <%= dina.name %>
+                </td>
+                <td>
+                  <%= link_to raw('<i class="small material-icons">edit</i>'), edit_admin_dina_url(dina) %>
+                  <%= link_to raw('<i class="small material-icons">delete</i>'), admin_dina_url(dina), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

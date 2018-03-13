@@ -1,0 +1,9 @@
+    <main>
+      <% if current_page?(root_path) %>
+        <%= yield %>
+      <% else %>
+        <div class="container" style="width: 95%;">
+          <%= yield %>
+        </div>
+      <% end %>
+    </main>

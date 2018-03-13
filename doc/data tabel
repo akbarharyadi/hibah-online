@@ -23,15 +23,20 @@ tabel lapor
 - pesan
 - status
 
-tabel user
+tabel user (done)
 - 
 
 tabel profile
 - Nama lengkap (OPTIONAL)
 - No Telepon (OPTIONAL)
 - foto (OPTIONAL)
+- jenis_kelamin (OPTIONAL)
 - Organisasi (OPTIONAL)
-- role
+- role_id
+- dinas_id
+
+Tabel Kategori
+- Kategori
 - dinas_id
 
 Tabel Dinas
@@ -40,7 +45,7 @@ Tabel Dinas
 - alamat
 
 tabel role
-- role (pemohon, bupati, TU Setda, SKPD, TAPD)
+- role (pemohon, bupati, TU Setda, SKPD, TAPD, admin, superadmin)
 
 tabel hibah
 - Nama (Individu atau organisasi)
@@ -48,6 +53,7 @@ tabel hibah
 - Judul Kegiatan
 - Latar Belakang
 - Maksud dan Tujuan
+- Total
 - user_id
 - on_process
 
