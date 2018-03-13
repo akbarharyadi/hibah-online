@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  belongs_to :role
+  belongs_to :role, optional: true
   belongs_to :dina, optional: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

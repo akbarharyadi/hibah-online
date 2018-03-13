@@ -6,35 +6,36 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Role.create!([
-  {
-    name: 'superadmin'
-  },
-  {
-    name: 'admin'
-  },
-  {
-    name: 'bupati'
-  },
-  {
-    name: 'TU Setda'
-  },
-  {
-    name: 'SKPD'
-  },
-  {
-    name: 'TAPD'
-  },
-  {
-    name: 'pemohon'
-  }
-])
+# Role.create!([
+#   {
+#     name: 'superadmin'
+#   },
+#   {
+#     name: 'admin'
+#   },
+#   {
+#     name: 'bupati'
+#   },
+#   {
+#     name: 'TU Setda'
+#   },
+#   {
+#     name: 'SKPD'
+#   },
+#   {
+#     name: 'TAPD'
+#   },
+#   {
+#     name: 'pemohon'
+#   }
+# ])
 
 
 User.create!([
   {
     email: 'superadmin@sahate.purwakartakab.go.id',
-    password: 'sahatepurwakartasuperadmin'
+    password: 'sahatepurwakartasuperadmin',
+    role_id: 1
   }
 ])
 
