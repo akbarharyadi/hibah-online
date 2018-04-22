@@ -12,7 +12,7 @@
         -# - Ahoy::Event.all.each do |kategori|
         %tr
           %td
-            = visit.user.email
+            = visit.user.email if visit.user.present?
           %td
             = visit.name
           %td
