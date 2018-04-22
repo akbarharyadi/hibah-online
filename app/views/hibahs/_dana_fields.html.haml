@@ -1,0 +1,8 @@
+.row.nested-fields
+  .black-text.col.s12.m7
+    = f.input :deskripsi
+  .black-text.col.s10.m4
+    = f.input :jumlah, as: :string, input_html: { class: 'dana_pecahan money', style: "text-align:right;" }
+  .black-text.col.s2.m1
+    = link_to_remove_association raw('                                                       |
+      <i class="material-icons left">clear</i>'), f, class: 'waves-effect waves-light right' |

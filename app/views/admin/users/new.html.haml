@@ -1,0 +1,9 @@
+.row
+  .col.s12.m12
+    .col.s12.m12
+      .card-panel
+        %h5.header2
+          %a{:href => "#", :style => "padding: 0px 16px;"}
+            %i.material-icons> verified_user
+            TAMBAH ITEM USER
+      = render 'form', user: @user

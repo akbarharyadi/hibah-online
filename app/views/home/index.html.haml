@@ -1,0 +1,78 @@
+#index-banner.parallax-container
+  .section.no-pad-bot
+    .container
+      %br/
+      %br/
+      %h1.header.center.red-text.font-motion-picture
+        = @homepage.text_1_1
+      .row.center
+        %h2.header.col.s12.font-motion-picture.red-text
+          = @homepage.text_1_2
+        %h2.header.col.s12.font-motion-picture.red-text
+          = @homepage.text_1_3
+      .row.center
+        %a#download-button.btn-large.waves-effect.waves-light.teal.lighten-1{:href => "/home/daftar_hibah"} Lihat Proposal Hibah
+      %br/
+      %br/
+  .parallax
+    = image_tag(@homepage.gambar_1.url)
+.container
+  .section
+    / Icon Section
+    .row
+      - count = 0
+      - @homepage.tahapans.each do |tahapan|
+        - if count == 3
+          .row
+        .col.s12.m4
+          .icon-block
+            %h2.center.brown-text
+              %i.material-icons
+                = tahapan.icon
+            %h5.center
+              = tahapan.judul
+            %p.light 
+              = tahapan.deskripsi
+        - count = count+1
+.parallax-container.valign-wrapper
+  .section.no-pad-bot
+    .container
+      .row.center
+        %h2.header.col.s12.red-text.font-motion-picture
+          = @homepage.text_2_1
+      .row.center
+        %h2.header.col.s12.red-text.font-motion-picture
+          = @homepage.text_2_2
+  .parallax
+    = image_tag(@homepage.gambar_2.url)
+.container
+  .section
+    .row
+      .col.s12.center
+        %h3
+          %i.mdi-content-send.brown-text
+        %h2.font-motion-picture.header.center 
+          Daftar
+          %span.red-text Bansos
+        .divider
+        .row.right{style: "margin-top:20px;"}
+          = smart_listing_controls_for(:hibah) do
+            %select{name: "hibah_sort"}
+              %option{:disabled => "disabled", :selected => "selected", :value => ""} Urut Berdasarkan
+              %option{:value => 'desc'} Terbaru
+              %option{:value => 'asc'} Terlama
+        .col.s12.m12
+          .row
+            = smart_listing_render(:hibah)
+.parallax-container.valign-wrapper
+  .section.no-pad-bot
+    .container
+      .row.center
+        %h2.header.col.s12.red-text.font-motion-picture
+          = @homepage.text_3_1
+      .row.center
+        %h2.header.col.s12.red-text.font-motion-picture
+          = @homepage.text_3_2
+  .parallax
+    = image_tag(@homepage.gambar_3.url)
+

@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %title Purwakarta Sahate
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "/", :name => "turbolinks-root"}/
+    %meta{:content => "no-preview", :name => "turbolinks-cache-control"}/
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  %body
+    = render 'layouts/header_2'
+    = render 'layouts/side_bar'
+    - flash.each do |message_type, message|
+      = javascript_tag "Materialize.toast('#{message}', 4000)"
+    = render 'layouts/main'
+    :css
+      .page-footer {
+        padding-top: 0px;
+      }
+    = render 'layouts/footer_1'

@@ -1,0 +1,27 @@
+.row
+  .col.s12.m12
+    .col.s12.m12
+      .card-panel
+        %h5.header2
+          %a{:href => "#", :style => "padding: 0px 16px;"}
+            %i.material-icons> verified_user
+            INDEX PAGE ROLE USER
+      .card-panel
+        .row
+          .col.s12.m12
+            %table.bordered.highlight.responsive-table
+              %thead
+                %tr
+                  %th ID
+                  %th Role
+                  %th
+              %tbody
+                - @roles.each do |role|
+                  %tr
+                    %td
+                      = role.id
+                    %td
+                      = role.name
+                    %td
+                      - unless role.id == 1
+                        = link_to raw('<i class="small material-icons">edit</i>'), edit_admin_role_url(role)

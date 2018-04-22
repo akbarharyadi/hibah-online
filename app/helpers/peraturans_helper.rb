@@ -1,0 +1,2 @@
+module PeraturansHelper
+end

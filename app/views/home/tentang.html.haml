@@ -1,0 +1,25 @@
+
+- @tentang.each.with_index do |value, index|
+  .row
+    %h5
+      %span.red-text
+        = raw value.judul
+    %hr/
+    - if value.gambar.present?
+      - if index.even?
+        .col.s12.m8
+          = raw value.konten
+        .col.s12.m4.parallax-container
+          .con{style: "height: 450px; position: relative"}
+          .parallax
+            = image_tag(value.gambar.url)
+      - else
+        .col.s12.m8
+          = raw value.konten
+        .col.s12.m4.parallax-container
+          .con{style: "height: 450px; position: relative"}
+          .parallax
+            = image_tag(value.gambar.url)
+    - else
+      .col.s12.m12
+        = raw value.konten

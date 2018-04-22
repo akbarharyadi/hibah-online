@@ -1,0 +1,33 @@
+.row
+  .col.s12.m12
+    .col.s12.m12
+      .card-panel
+        %h5.header2
+          %a{:href => "#", :style => "padding: 0px 16px;"}
+            %i.material-icons> verified_user
+            INDEX PAGE KATEGORI
+      .card-panel
+        .row
+          .col.m12.s12{:style => "padding:10px;"}
+            = link_to raw('<i class="material-icons left">add_circle_outline</i> Tambah Kategori'), new_admin_kategori_path, class: 'right btn'
+        .row
+          .col.s12.m12
+            %table.bordered.highlight.responsive-table
+              %thead
+                %tr
+                  %th ID
+                  %th Kategori
+                  %th Dinas
+                  %th
+              %tbody
+                - @kategori.each do |kategori|
+                  %tr
+                    %td
+                      = kategori.id
+                    %td
+                      = kategori.name
+                    %td
+                      = kategori.dina.name if kategori.dina_id.present?
+                    %td
+                      = link_to raw('<i class="small material-icons">edit</i>'), edit_admin_kategori_url(kategori)
+                      = link_to raw('<i class="small material-icons">delete</i>'), admin_kategori_url(kategori), method: :delete, data: { confirm: 'Are you sure?' }

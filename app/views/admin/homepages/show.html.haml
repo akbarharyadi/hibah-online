@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Gambar 1:
+  = @homepage.gambar_1
+%p
+  %b Text 1 1:
+  = @homepage.text_1_1
+%p
+  %b Text 1 2:
+  = @homepage.text_1_2
+%p
+  %b Text 1 3:
+  = @homepage.text_1_3
+%p
+  %b Gambar 2:
+  = @homepage.gambar_2
+%p
+  %b Text 2 1:
+  = @homepage.text_2_1
+%p
+  %b Text 2 2:
+  = @homepage.text_2_2
+%p
+  %b Gambar 3:
+  = @homepage.gambar_3
+%p
+  %b Text 3 1:
+  = @homepage.text_3_1
+%p
+  %b Text 3 2:
+  = @homepage.text_3_2
+
+= link_to 'Edit', edit_homepage_path(@homepage)
+\|
+= link_to 'Back', homepages_path

@@ -1,0 +1,25 @@
+- unless smart_listing.empty?
+  - smart_listing.collection.each do |hibah|
+    .col.s12.m4
+      .card
+        .card-image
+          = image_tag(hibah.gambar.url, class:"materialboxed")
+        .card-content
+          %p.black-text.strong
+            = link_to hibah.judul_kegiatan, show_hibah_path(id: hibah.id)
+          %hr/
+          %p
+            %strong Later Belakang :
+            %br/
+            = truncate(hibah.latar_belakang, length: 100, omission: "...")
+          %p
+            %strong Tahap :
+            %br/
+            = hibah.status_hibah
+          %p
+            %strong Nilai yang diajukan :
+            %br/
+            = number_to_currency hibah.danas.sum(:jumlah), unit: "Rp. ", separator: ",", delimiter: "."
+  = smart_listing.paginate
+- else
+  %p No Record Found!

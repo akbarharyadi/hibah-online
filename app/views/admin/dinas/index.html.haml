@@ -1,0 +1,30 @@
+.row
+  .col.s12.m12
+    .col.s12.m12
+      .card-panel
+        %h5.header2
+          %a{:href => "#", :style => "padding: 0px 16px;"}
+            %i.material-icons> verified_user
+            INDEX PAGE DINAS
+      .card-panel
+        .row
+          .col.m12.s12{:style => "padding:10px;"}
+            = link_to raw('<i class="material-icons left">add_circle_outline</i> Tambah Dinas'), new_admin_dina_path, class: 'right btn'
+        .row
+          .col.s12.m12
+            %table.bordered.highlight.responsive-table
+              %thead
+                %tr
+                  %th Kode
+                  %th Nama
+                  %th
+              %tbody
+                - @dinas.each do |dina|
+                  %tr
+                    %td
+                      = dina.code
+                    %td
+                      = dina.name
+                    %td
+                      = link_to raw('<i class="small material-icons">edit</i>'), edit_admin_dina_url(dina)
+                      = link_to raw('<i class="small material-icons">delete</i>'), admin_dina_url(dina), method: :delete, data: { confirm: 'Are you sure?' }

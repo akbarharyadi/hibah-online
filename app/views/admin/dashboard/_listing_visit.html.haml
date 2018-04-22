@@ -1,0 +1,24 @@
+- unless smart_listing.empty?  
+  %table.bordered.highlight.responsive-table
+    %thead
+      %tr
+        %th User Email
+        %th Kegiatan
+        %th Keterangan Akses
+        %th Tanggal
+    %tbody
+      - smart_listing.collection.each do |visit|
+        -# = Ahoy::Event.order('id desc').all.inspect
+        -# - Ahoy::Event.all.each do |kategori|
+        %tr
+          %td
+            = visit.user.email
+          %td
+            = visit.name
+          %td
+            = visit.properties
+          %td
+            = visit.time
+  = smart_listing.paginate
+- else
+  %p No Record Found!

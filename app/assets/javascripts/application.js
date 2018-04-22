@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require ahoy
 //= require smart_listing
-//= require turbolinks
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
 //= require materialize-form
@@ -22,4 +21,7 @@
 //= require rails.validations.simple_form
 //= require cocoon
 //= require autoNumeric.min
+//= require Chart.bundle
+//= require chartkick
+//= require froala_editor.min.js
 //= require init

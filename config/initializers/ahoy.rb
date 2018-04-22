@@ -1,3 +1,5 @@
-class Ahoy::Store < Ahoy::Stores::ActiveRecordTokenStore
-  # customize here
+class Ahoy::Store < Ahoy::DatabaseStore
 end
+
+# set to true for JavaScript tracking
+Ahoy.api = true

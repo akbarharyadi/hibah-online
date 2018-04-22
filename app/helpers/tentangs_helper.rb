@@ -1,0 +1,2 @@
+module TentangsHelper
+end

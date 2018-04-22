@@ -1,0 +1,84 @@
+= simple_form_for(@homepage, url: admin_homepage_path(@homepage), defaults: { label_html: { class: (@homepage.new_record? ? '' : 'active') } }) do |f|
+  -# = form_for admin_homepage_path(@homepage) do |f|
+  -# - if @homepage.errors.any?
+  -#   #error_explanation
+  -#     %h2= "#{pluralize(@homepage.errors.count, "error")} prohibited this homepage from being saved:"
+  -#     %ul
+  -#       - @homepage.errors.full_messages.each do |message|
+  -#         %li= message
+  .row
+    .form-inputs
+      .col.m12.s12
+        .card-panel
+          %h5.header2
+            Bagian 
+            %span.red-text Pertama
+          .divider
+          .row
+            = f.input :gambar_1, as: :file, input_html: { class: 'photo_upload m6', accept: 'image/jpeg, image/jpg, image/gif, image/png' }
+            .black-text.col.m6.s12
+              .input-field.col.s12.float.optional
+                = image_tag(@homepage.gambar_1.url, class:"materialboxed image_to_upload", width:"250")
+            = f.input :gambar_1_cache, as: :hidden
+          .row
+            = f.input :text_1_1, label: 'Text 1-1', autofocus: true, wrapper_html: { class: 'm12' }
+          .row
+            = f.input :text_1_2, label: 'Text 1-2', autofocus: true, wrapper_html: { class: 'm12' }
+          .row
+            = f.input :text_1_3, label: 'Text 1-3', autofocus: true, wrapper_html: { class: 'm12' }
+
+        
+        .card-panel
+          %h5.header2
+            Bagian 
+            %span.red-text Kedua
+          .divider
+          .row
+            = f.input :gambar_2, as: :file, input_html: { class: 'photo_upload m6', accept: 'image/jpeg, image/jpg, image/gif, image/png' }
+            .black-text.col.m6.s12
+              .input-field.col.s12.float.optional
+                = image_tag(@homepage.gambar_2.url, class:"materialboxed image_to_upload", width:"250")
+            = f.input :gambar_2_cache, as: :hidden
+          .row
+            = f.input :text_2_1, label: 'Text 2-1', autofocus: true, wrapper_html: { class: 'm12' }
+          .row
+            = f.input :text_2_2, label: 'Text 2-2', autofocus: true, wrapper_html: { class: 'm12' }
+            
+        .card-panel
+          %h5.header2
+            Bagian 
+            %span.red-text Ketiga
+          .divider
+          .row
+            = f.input :gambar_3, as: :file, input_html: { class: 'photo_upload m6', accept: 'image/jpeg, image/jpg, image/gif, image/png' }
+            .black-text.col.m6.s12
+              .input-field.col.s12.float.optional
+                = image_tag(@homepage.gambar_3.url, class:"materialboxed image_to_upload", width:"250")
+            = f.input :gambar_3_cache, as: :hidden
+          .row
+            = f.input :text_3_1, label: 'Text 3-1', autofocus: true, wrapper_html: { class: 'm12' }
+          .row
+            = f.input :text_3_2, label: 'Text 3-2', autofocus: true, wrapper_html: { class: 'm12' }
+
+        .card-panel
+          %h5.header2
+            Bagian 
+            %span.red-text Tahapan
+          .divider
+          .row
+            .col.m12.s12
+              .black-text.col.s8.m8
+              .black-text.col.s8.m8.right
+                = link_to_add_association raw('<i class="material-icons left">add_circle_outline</i> Tambah Tahapan'), f, |
+                  :tahapans, :"data-association-insertion-node" => "div.data_items",                                      |
+                  :"data-association-insertion-method" => "append",                                                       |
+                  :partial => "tahapan_fields",                                                                           |
+                  class: 'waves-effect waves-light right', style: 'padding:20px;'                                         |
+          #tasks
+            .data_items
+              = f.simple_fields_for :tahapans do |tahapan|
+                = render  "tahapan_fields", :f => tahapan
+        .right{:style => "padding:20px;"}
+          %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
+            SIMPAN HOMEPAGE
+            %i.material-icons.right send

@@ -10,21 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312041422) do
+ActiveRecord::Schema.define(version: 20180422144541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ahoy_events", force: :cascade do |t|
-    t.integer "visit_id"
-    t.integer "user_id"
+    t.bigint "visit_id"
+    t.bigint "user_id"
     t.string "name"
     t.jsonb "properties"
     t.datetime "time"
     t.index "properties jsonb_path_ops", name: "index_ahoy_events_on_properties_jsonb_path_ops", using: :gin
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
-    t.index ["user_id", "name"], name: "index_ahoy_events_on_user_id_and_name"
-    t.index ["visit_id", "name"], name: "index_ahoy_events_on_visit_id_and_name"
+    t.index ["user_id"], name: "index_ahoy_events_on_user_id"
+    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+  end
+
+  create_table "ahoy_visits", force: :cascade do |t|
+    t.string "visit_token"
+    t.string "visitor_token"
+    t.bigint "user_id"
+    t.string "ip"
+    t.text "user_agent"
+    t.text "referrer"
+    t.string "referring_domain"
+    t.string "search_keyword"
+    t.text "landing_page"
+    t.string "browser"
+    t.string "os"
+    t.string "device_type"
+    t.string "country"
+    t.string "region"
+    t.string "city"
+    t.string "utm_source"
+    t.string "utm_medium"
+    t.string "utm_term"
+    t.string "utm_content"
+    t.string "utm_campaign"
+    t.datetime "started_at"
+    t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
+    t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
   create_table "danas", force: :cascade do |t|
@@ -39,7 +65,7 @@ ActiveRecord::Schema.define(version: 20180312041422) do
   create_table "dinas", force: :cascade do |t|
     t.string "code"
     t.string "name"
-    t.string "address"
+    t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -67,9 +93,31 @@ ActiveRecord::Schema.define(version: 20180312041422) do
     t.string "gambar"
   end
 
+  create_table "homepages", force: :cascade do |t|
+    t.string "gambar_1"
+    t.text "text_1_1"
+    t.text "text_1_2"
+    t.text "text_1_3"
+    t.string "gambar_2"
+    t.text "text_2_1"
+    t.text "text_2_2"
+    t.string "gambar_3"
+    t.text "text_3_1"
+    t.text "text_3_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "kategoris", force: :cascade do |t|
     t.string "name"
-    t.integer "dinas_id"
+    t.integer "dina_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "peraturans", force: :cascade do |t|
+    t.string "nama"
+    t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,6 +139,23 @@ ActiveRecord::Schema.define(version: 20180312041422) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tahapans", force: :cascade do |t|
+    t.string "icon"
+    t.string "judul"
+    t.text "deskripsi"
+    t.integer "homepage_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tentangs", force: :cascade do |t|
+    t.string "judul"
+    t.text "konten"
+    t.string "gambar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -105,40 +170,9 @@ ActiveRecord::Schema.define(version: 20180312041422) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role_id"
-    t.string "dinas_idLinteger"
+    t.integer "dina_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "visits", force: :cascade do |t|
-    t.string "visit_token"
-    t.string "visitor_token"
-    t.string "ip"
-    t.text "user_agent"
-    t.text "referrer"
-    t.text "landing_page"
-    t.integer "user_id"
-    t.string "referring_domain"
-    t.string "search_keyword"
-    t.string "browser"
-    t.string "os"
-    t.string "device_type"
-    t.integer "screen_height"
-    t.integer "screen_width"
-    t.string "country"
-    t.string "region"
-    t.string "city"
-    t.string "postal_code"
-    t.decimal "latitude"
-    t.decimal "longitude"
-    t.string "utm_source"
-    t.string "utm_medium"
-    t.string "utm_term"
-    t.string "utm_content"
-    t.string "utm_campaign"
-    t.datetime "started_at"
-    t.index ["user_id"], name: "index_visits_on_user_id"
-    t.index ["visit_token"], name: "index_visits_on_visit_token", unique: true
   end
 
   add_foreign_key "danas", "hibahs"

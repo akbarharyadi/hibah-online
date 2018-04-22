@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Nama:
+  = @peraturan.nama
+%p
+  %b File:
+  = @peraturan.file
+
+= link_to 'Edit', edit_peraturan_path(@peraturan)
+\|
+= link_to 'Back', peraturans_path

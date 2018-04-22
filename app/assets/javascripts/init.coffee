@@ -7,6 +7,7 @@ $(document).on 'ready turbolinks:load', ->
   $('select').material_select();
   Waves.displayEffect()
   console.log "load init on ready or turbolinks:load"
+  $('.parallax').parallax()
 
   $('textarea').trigger('autoresize')
   $('span.help-text').each ->
@@ -15,7 +16,7 @@ $(document).on 'ready turbolinks:load', ->
     $(this).parents('div.input-field').children('label').attr(
       'data-hint', $value
     )
-    
+
   $('small.error-block').tooltip({delay: 50});
 
   money_fields = $('.money')
@@ -58,3 +59,6 @@ $(document).on 'ready turbolinks:load', ->
   $('div.data_items').bind 'cocoon:after-remove', (e, mblb_items) ->
     $(document).find('.dana_pecahan').trigger('change')
 
+  $('.flora-editor').froalaEditor({
+      height: 600
+    });

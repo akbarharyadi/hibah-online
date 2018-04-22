@@ -1,0 +1,47 @@
+.row
+  .col.s12.m12
+    .card-panel
+      %h5.header2
+        %a{:href => "#", :style => "padding: 0px 16px;"}
+          %i.material-icons> dashboard
+          DASHBOARD
+  .col.s12.m12
+    .card-panel
+      .row
+        %a{:href => "#", :style => "padding: 0px 16px;"}
+          %i.material-icons> description
+          User Visit per Tanggal
+        .divider{style: "margin-bottom: 20px;"}
+        .row
+          .col.s12.m12
+            = line_chart Ahoy::Visit.group_by_day(:started_at).count, xtitle: "Tanggal Login", ytitle: "Jumlah"
+  .col.s12.m6
+    .card-panel
+      .row
+        %a{:href => "#", :style => "padding: 0px 16px;"}
+          %i.material-icons> accessibility
+          Jumlah Visit per User
+        .divider{style: "margin-bottom: 20px;"}
+        .row
+          .col.s12.m12
+            = pie_chart Ahoy::Visit.joins(:user).where('user_id is not null').group(:email).count
+  .col.s12.m6
+    .card-panel
+      .row
+        %a{:href => "#", :style => "padding: 0px 16px;"}
+          %i.material-icons> label
+          Jumlah Hibah per Bulan dan tahun tahun
+        .divider{style: "margin-bottom: 20px;"}
+        .row
+          .col.s12.m12
+            = column_chart Hibah.group_by_month_of_year(:created_at).count      
+  .col.s12.m12
+    .card-panel
+      .row
+        %a{:href => "#", :style => "padding: 0px 16px;"}
+          %i.material-icons> label
+          Activity website
+        .divider{style: "margin-bottom: 20px;"}
+        .row
+          .col.s12.m12
+            = smart_listing_render(:users)

@@ -1,0 +1,14 @@
+.form-padding
+  .col.s12
+    .card.hoverable
+      .card-content
+        %span.card-title.center Log In
+        .divider
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = f.input :email, required: true, autofocus: true
+          = f.input :password, required: true, hint: false
+          = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+          %div{:style => "padding:10px"}
+          .form-actions.center
+            = f.button :submit, "Log in"
+        = render "devise/shared/links"

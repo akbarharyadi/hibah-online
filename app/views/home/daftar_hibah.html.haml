@@ -1,0 +1,22 @@
+%h5
+  DAFTAR
+  %span.red-text BANSOS
+%hr/
+.row
+  = smart_listing_controls_for(:hibah) do
+    .input-field.col.s6
+      %input#judul_bansos.validate{:placeholder => "Judul Bansos", :type => "text", name: 'judul_bansos'}/
+      %label{:for => "judul_bansos", class: "active"} Cari Berdasarkan Judul
+    .input-field.col.s8
+      %select{name: 'kategori_hibah'}
+        %option{:disabled => "disabled", :selected => "selected", :value => ""} Pilih Berdasar Kategori
+        - @kategori.each do |value|
+          %option{:value => "#{value.id}"}
+            = value.name
+    .input-field.col.s4
+      %select{name: "hibah_sort"}
+        %option{:disabled => "disabled", :selected => "selected", :value => ""} Urut Berdasarkan
+        %option{:value => 'desc'} Terbaru
+        %option{:value => 'asc'} Terlama
+.row
+  = smart_listing_render(:hibah)

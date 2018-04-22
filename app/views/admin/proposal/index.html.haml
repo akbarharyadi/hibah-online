@@ -1,0 +1,34 @@
+.row
+  .col.s12.m12
+    .col.s12.m12
+      .card-panel
+        %h5.header2
+          %a{:href => "#", :style => "padding: 0px 16px;"}
+            %i.material-icons> subject
+            INDEX PAGE PROPOSAL HIBAH 
+      .card-panel
+        .row
+          .col.s12.m12
+            = smart_listing_controls_for(:hibah) do
+              .input-field.col.s6
+                %input#organisasi_bansos.validate{:placeholder => "Organisasi Bansos", :type => "text", name: 'organisasi_bansos'}/
+                %label{:for => "organisasi_bansos", class: "active"} Cari Berdasarkan Organisasi
+              .input-field.col.s6
+                %input#judul_bansos.validate{:placeholder => "Judul Bansos", :type => "text", name: 'judul_bansos'}/
+                %label{:for => "judul_bansos", class: "active"} Cari Berdasarkan Judul
+              .input-field.col.s8
+                %select{name: 'status_bansos'}
+                  %option{:disabled => "disabled", :selected => "selected", :value => ""} Pilih Berdasar Kategori
+                  %option{:value => 0} Proses seleksi
+                  %option{:value => 1} Proses disposisi
+                  %option{:value => 2} Proses verifikasi
+                  %option{:value => 3} Proses rekomendasi
+                  %option{:value => 4} Proses Ditolak
+                  %option{:value => 5} Proses BANSOS Berjalan
+      .card-panel
+        -# .row
+        -#   .col.m12.s12{:style => "padding:10px;"}
+        -#     = link_to raw('<i class="material-icons left">add_circle_outline</i> Tambah Hibah'), new_hibah_path, class: 'right btn'
+        .row
+          .col.s12.m12
+            = smart_listing_render(:hibah)

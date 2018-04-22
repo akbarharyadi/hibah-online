@@ -1,0 +1,34 @@
+.row
+  .col.s12.m12
+    .col.s12.m12
+      .card-panel
+        %h5.header2
+          %a{:href => "#", :style => "padding: 0px 16px;"}
+            %i.material-icons> verified_user
+            INDEX PAGE USER
+      .card-panel
+        .row
+          .col.m12.s12{:style => "padding:10px;"}
+            = link_to raw('<i class="material-icons left">add_circle_outline</i> Tambah User'), new_admin_user_path, class: 'right btn'
+        .row
+          .col.s12.m12
+            %table.bordered.highlight.responsive-table
+              %thead
+                %tr
+                  %th Email
+                  %th Role
+                  %th Dinas
+                  %th
+              %tbody
+                - @users.each do |user|
+                  %tr
+                    %td
+                      = user.email
+                    %td
+                      = user.role.name if user.role_id.present?
+                    %td
+                      = user.dina.name if user.dina_id.present?
+                    %td
+                      - unless user.role_id == 1
+                        = link_to raw('<i class="small material-icons">edit</i>'), edit_admin_user_url(user)
+                        = link_to raw('<i class="small material-icons">delete</i>'), admin_user_url(user), method: :delete, data: { confirm: 'Are you sure?' }

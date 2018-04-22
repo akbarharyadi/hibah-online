@@ -1,0 +1,15 @@
+= simple_form_for(@role, url: admin_role_path(@role)) do |f|
+  / <haml_loud> f.error_notification </haml_loud>
+  .card-panel
+    .row
+      .form-inputs
+        .col.m12.s12
+          .row
+            = f.input :name, required: true, autofocus: true, wrapper_html: { class: 'm6' }
+  .col.m12
+    .right{:style => "padding:20px;"}
+      %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
+        SIMPAN ROLE
+        %i.material-icons.right send
+    .right{:style => "padding:20px;"}
+      = link_to 'Back', admin_roles_path, class:"btn cyan waves-effect waves-light right"

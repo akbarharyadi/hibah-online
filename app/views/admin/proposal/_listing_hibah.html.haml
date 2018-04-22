@@ -1,0 +1,20 @@
+- unless smart_listing.empty?
+  %table.bordered.highlight.responsive-table
+    %thead
+      %tr
+        %th Nomor
+        %th Nama Organisasi
+        %th Judul Kegiatan
+        %th Tahap Proposal
+        %th
+    %tbody
+      - smart_listing.collection.each do |hibah|
+        %tr
+          %th= hibah.created_at.to_time.to_i.to_s + '#' + hibah.id.to_s
+          %td= hibah.nama
+          %td= hibah.judul_kegiatan
+          %td= hibah.status_hibah
+          %td= link_to raw(' Mulai Seleksi <i class="material-icons left">arrow_forward_outline</i>'), new_hibah_path, class: 'right btn'
+    = smart_listing.paginate
+- else
+  %p No Record Found!

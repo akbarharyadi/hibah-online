@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Judul:
+  = @tentang.judul
+%p
+  %b Konten:
+  = @tentang.konten
+%p
+  %b Gambar:
+  = @tentang.gambar
+
+= link_to 'Edit', edit_tentang_path(@tentang)
+\|
+= link_to 'Back', tentangs_path

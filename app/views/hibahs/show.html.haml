@@ -1,0 +1,56 @@
+.card-panel
+  .row
+    %h5.header2
+      = @hibah.judul_kegiatan
+    .divider
+    .row
+      .col.s12.m6
+        %p
+          = image_tag(@hibah.gambar.url, class:"materialboxed image_to_upload", width:"100%")
+        .col.s12.m12
+          = link_to raw('<i class="material-icons">file_download</i> Unduh Proposal'), @hibah.proposal_url, target: "_blank", class:"btn waves-effect waves-light center col s12 m12" if @hibah.proposal.present?
+      .col.s12.m6
+        %p
+          %strong Nama:
+          = @hibah.nama
+        %p
+          %strong Alamat:
+          = @hibah.alamat
+        %p
+          %strong Judul kegiatan:
+          = @hibah.judul_kegiatan
+        %p
+          %strong Latar belakang:
+          = @hibah.latar_belakang
+        %p
+          %strong Maksud dan tujuan:
+          = @hibah.maksud_dan_tujuan
+        %p
+          %strong Tahapan:
+          = @hibah.status_hibah
+    .divider
+    .row
+      %p{:style => "padding:30px;padding-top:20px;padding-bottom:0px;"}
+        %strong Uraian Dana yang Diajukan:
+      .row
+        .col.s12.m12{:style => "padding:30px;padding-top:0px;"}
+          %table.bordered.highlight.responsive-table
+            %thead
+              %tr
+                %th No
+                %th Deskripsi keperluan
+                %th{:style => "text-align:right"} Jumlah Dana
+            %tbody
+              - numb = 1
+              - @hibah.danas.each do |dana|
+                %tr
+                  %td= numb
+                  %td= dana.deskripsi
+                  %td{:style => "text-align:right"}= number_to_currency dana.jumlah, unit: "Rp. ", separator: ",", delimiter: "."
+                - numb = numb+1
+  .row
+    .col.s12.m12
+      .right{:style => "padding:20px;"}
+        = link_to 'Edit', edit_hibah_path(@hibah), class:"btn waves-effect waves-light right"
+      .right{:style => "padding:20px;"}
+        = link_to 'Back', hibahs_path, class:"btn waves-effect waves-light right"

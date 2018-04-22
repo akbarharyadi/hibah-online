@@ -1,0 +1,22 @@
+= simple_form_for(@user, url: (@user.new_record? ? admin_users_path(@user) : admin_user_path(@user))) do |f|
+  / <haml_loud> f.error_notification </haml_loud>
+  .card-panel
+    .row
+      .form-inputs
+        .col.m12.s12
+          .row
+            = f.input :email, required: true, autofocus: true, wrapper_html: { class: 'm6' }
+          - if @user.new_record? or @user.role_id == 1 or @user.role_id == 2
+            .row
+              = f.input :password, required: @user.new_record?, autofocus: true, wrapper_html: { class: 'm6' }
+              = f.input :password_confirmation, required: @user.new_record?, autofocus: true, wrapper_html: { class: 'm6' }
+          .row
+            = f.input :role_id, collection: Role.where('id != 1').all, prompt: " --- Pilih Role --- ", required: true, wrapper_html: { class: 'm6' }
+            = f.input :dina_id, collection: Dina.all, prompt: " --- Pilih Dinas --- ", wrapper_html: { class: 'm6' }
+  .col.m12
+    .right{:style => "padding:20px;"}
+      %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
+        SIMPAN USER
+        %i.material-icons.right send
+    .right{:style => "padding:20px;"}
+      = link_to 'Back', admin_users_path, class:"btn cyan waves-effect waves-light right"

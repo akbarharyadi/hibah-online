@@ -1,0 +1,39 @@
+%h1 Listing homepages
+
+%table
+  %thead
+    %tr
+      %th Gambar 1
+      %th Text 1 1
+      %th Text 1 2
+      %th Text 1 3
+      %th Gambar 2
+      %th Text 2 1
+      %th Text 2 2
+      %th Gambar 3
+      %th Text 3 1
+      %th Text 3 2
+      %th
+      %th
+      %th
+
+  %tbody
+    - @homepages.each do |homepage|
+      %tr
+        %td= homepage.gambar_1
+        %td= homepage.text_1_1
+        %td= homepage.text_1_2
+        %td= homepage.text_1_3
+        %td= homepage.gambar_2
+        %td= homepage.text_2_1
+        %td= homepage.text_2_2
+        %td= homepage.gambar_3
+        %td= homepage.text_3_1
+        %td= homepage.text_3_2
+        %td= link_to 'Show', homepage
+        %td= link_to 'Edit', edit_homepage_path(homepage)
+        %td= link_to 'Destroy', homepage, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Homepage', new_homepage_path

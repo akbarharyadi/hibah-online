@@ -1,0 +1,16 @@
+= simple_form_for(@peraturan, url: (@peraturan.new_record? ? admin_peraturans_path(@peraturan) : admin_peraturan_path(@peraturan)), defaults: { label_html: { class: (@peraturan.new_record? ? '' : 'active') } }) do |f|
+  .row
+    .form-inputs
+      .col.m12.s12
+        .card-panel
+          .row
+            .field
+              = f.input :nama, autofocus: true, wrapper_html: { class: 'm6' }
+          .row
+            .field
+              = f.input :file, as: :file, input_html: { class: 'photo_upload m6', accept: 'application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document' }
+              .black-text.col.m6.s12= link_to "Download File", @peraturan.file_url, target: "_blank" if @peraturan.file.present?
+        .right{:style => "padding:20px;"}
+          %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
+            SIMPAN
+            %i.material-icons.right send 
