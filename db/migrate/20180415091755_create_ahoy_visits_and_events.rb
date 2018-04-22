@@ -1,6 +1,6 @@
 class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.1]
   def change
-    drop_table :ahoy_visits
+    # drop_table :ahoy_visits
     drop_table :ahoy_events
     create_table :ahoy_visits do |t|
       t.string :visit_token
