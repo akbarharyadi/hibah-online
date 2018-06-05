@@ -29,7 +29,7 @@ module Admin
 
       respond_to do |format|
         if @homepage.save
-          format.html { redirect_to @homepage, notice: 'Homepage was successfully created.' }
+          format.html { redirect_to @homepage, notice: 'Data Homepage berhasil disimpan.' }
           format.json { render :show, status: :created, location: @homepage }
         else
           format.html { render :new }
@@ -43,7 +43,7 @@ module Admin
     def update
       respond_to do |format|
         if @homepage.update(homepage_params)
-          format.html { redirect_to edit_admin_homepage_path(1), notice: 'Homepage was successfully updated.' }
+          format.html { redirect_to edit_admin_homepage_path(1), notice: 'Data Homepage berhasil diubah.' }
           format.json { render :show, status: :ok, location: @homepage }
         else
           format.html { render :edit }

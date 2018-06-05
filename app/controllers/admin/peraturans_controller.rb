@@ -29,7 +29,7 @@ module Admin
 
       respond_to do |format|
         if @peraturan.save
-          format.html { redirect_to admin_peraturans_path, notice: 'Peraturan was successfully created.' }
+          format.html { redirect_to admin_peraturans_path, notice: 'Data Peraturan hibah berhasil disimpan.' }
           format.json { render :show, status: :created, location: @peraturan }
         else
           format.html { render :new }
@@ -43,7 +43,7 @@ module Admin
     def update
       respond_to do |format|
         if @peraturan.update(peraturan_params)
-          format.html { redirect_to admin_peraturans_path, notice: 'Peraturan was successfully updated.' }
+          format.html { redirect_to admin_peraturans_path, notice: 'Data Peraturan hibah berhasil diubah.' }
           format.json { render :show, status: :ok, location: @peraturan }
         else
           format.html { render :edit }
@@ -57,7 +57,7 @@ module Admin
     def destroy
       @peraturan.destroy
       respond_to do |format|
-        format.html { redirect_to admin_peraturans_path, notice: 'Peraturan was successfully destroyed.' }
+        format.html { redirect_to admin_peraturans_path, notice: 'Data Peraturan hibah berhasil dihapus.' }
         format.json { head :no_content }
       end
     end

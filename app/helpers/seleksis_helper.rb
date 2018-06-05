@@ -1,0 +1,2 @@
+module SeleksisHelper
+end

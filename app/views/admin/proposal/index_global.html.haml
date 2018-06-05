@@ -2,7 +2,7 @@
   %h2.header2
     %a{:href => "#", :style => "padding: 0px 16px;"}
       %i.material-icons> subject
-      INDEX PAGE PROPOSAL HIBAH 
+      = @judul
 .row.clearfix
   .col-lg-12.col-md-12.col-sm-12.col-xs-12
     .card
@@ -26,15 +26,6 @@
                       .input-field.col.s6
                         %input#judul_bansos.validate{:placeholder => "Judul Bansos", :type => "text", name: 'judul_bansos'}/
                         %label{:for => "judul_bansos", class: "active"} Cari Berdasarkan Judul
-                      .input-field.col.s8
-                        %select{name: 'status_bansos'}
-                          %option{:disabled => "disabled", :selected => "selected", :value => ""} Pilih Berdasar Kategori
-                          %option{:value => 0} Proses seleksi
-                          %option{:value => 1} Proses disposisi
-                          %option{:value => 2} Proses verifikasi
-                          %option{:value => 3} Proses rekomendasi
-                          %option{:value => 4} Proses Ditolak
-                          %option{:value => 5} Proses BANSOS Berjalan
           .row
             .col-lg-12.col-md-12.col-sm-12.col-xs-12.responsive-table
               = smart_listing_render(:hibah)

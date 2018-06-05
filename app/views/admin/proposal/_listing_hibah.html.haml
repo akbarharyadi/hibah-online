@@ -1,20 +1,35 @@
-- unless smart_listing.empty?
-  %table.bordered.highlight.responsive-table
-    %thead
-      %tr
-        %th Nomor
-        %th Nama Organisasi
-        %th Judul Kegiatan
-        %th Tahap Proposal
-        %th
-    %tbody
+
+%table.table-bordered
+  %thead
+    %tr
+      %th Nomor
+      %th Nama Organisasi
+      %th Judul Kegiatan
+      %th Tahap Proposal
+      %th
+  %tbody
+    - unless smart_listing.empty?
       - smart_listing.collection.each do |hibah|
         %tr
-          %th= hibah.created_at.to_time.to_i.to_s + '#' + hibah.id.to_s
+          %th= link_to raw(hibah.created_at.to_time.to_i.to_s + '#' + hibah.id.to_s), hibah, target: '_blank'
           %td= hibah.nama
           %td= hibah.judul_kegiatan
           %td= hibah.status_hibah
-          %td= link_to raw(' Mulai Seleksi <i class="material-icons left">arrow_forward_outline</i>'), new_hibah_path, class: 'right btn'
-    = smart_listing.paginate
-- else
-  %p No Record Found!
+          - if hibah.status == 0 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 4)
+            %td= link_to raw(' Mulai Seleksi <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_seleksi_path(hibah.id.to_s), class: 'right btn'
+          - elsif hibah.status == 1 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 3)
+            %td= link_to raw(' Mulai Disposisi <i class="material-icons left">arrow_forward_outline</i>'), '#', class: 'right btn disposisi_btn_go', id: hibah.id.to_s
+          - elsif hibah.status == 2 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 6)
+            %td= link_to raw(' Mulai Distribusi <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_distribusi_path(hibah.id.to_s), class: 'right btn'
+          - elsif hibah.status == 3 and (current_user.role_id == 1 or current_user.role_id == 2 or (current_user.role_id == 5 and current_user.dina_id == hibah.distribusis.last.try(:dina_id)))
+            %td= link_to raw(' Mulai Evaluasi <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_evaluasi_path(hibah.id.to_s), class: 'right btn'
+          - elsif hibah.status == 4 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 6 )
+            %td= link_to raw(' Mulai Pertimbangan <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_pertimbangan_path(hibah.id.to_s), class: 'right btn'
+          - elsif hibah.status == 5 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 6 )
+            %td= link_to raw(' Mulai Penetapan <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_penetapan_path(hibah.id.to_s), class: 'right btn'
+          - else
+            %td
+    - else
+      %tr
+        %th{colspan:4} Data tidak ditemukan!
+  = smart_listing.paginate

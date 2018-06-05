@@ -1,15 +1,14 @@
 !!!
 %html
-  %body
+  %head
     %title Purwakarta Sahate
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-    %meta{:content => "/", :name => "turbolinks-root"}/
-    %meta{:content => "no-preview", :name => "turbolinks-cache-control"}/
     %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", :rel => "stylesheet"}/
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all'
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application', media: 'all'
     :css
       nav, main, footer {
         padding-left: 300px;
@@ -20,8 +19,9 @@
           padding-left: 0;
         }
       }
-    = javascript_include_tag 'application'
+  %body
     / <haml_loud> javascript_pack_tag &#39;application&#39; </haml_loud>
+    .loader
     = render 'layouts/admin/header_1'
     = render 'layouts/admin/side_bar_fixed'
     - flash.each do |message_type, message|

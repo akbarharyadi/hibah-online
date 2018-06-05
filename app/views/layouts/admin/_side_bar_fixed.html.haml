@@ -22,14 +22,18 @@
           %ul
             %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and params[:action] == 'index'}"}
               %a{:href => "/admin/proposal/index"} DAFTAR PROPOSAL
-            %li
-              %a{:href => "#"} SELEKSI PROPOSAL
-            %li
-              %a{:href => "#"} DISPOSISI PROPOSAL
-            %li
-              %a{:href => "#"} VERIFIKASI PROPOSAL
-            %li
-              %a{:href => "#"} REKOMENDASI PROPOSAL
+            %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'seleksi' or params[:action] == 'proses_seleksi') }"}
+              %a{:href => "/admin/proposal/seleksi"} SELEKSI PROPOSAL
+            %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'disposisi' or params[:action] == 'proses_disposisi') }"}
+              %a{:href => "/admin/proposal/disposisi"} DISPOSISI PROPOSAL
+            %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'distribusi' or params[:action] == 'proses_distribusi') }"}
+              %a{:href => "/admin/proposal/distribusi"} DISTRIBUSI PROPOSAL
+            %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'evaluasi' or params[:action] == 'proses_evaluasi') }"}
+              %a{:href => "/admin/proposal/evaluasi"} EVALUASI PROPOSAL
+            %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'pertimbangan' or params[:action] == 'proses_pertimbangan') }"}
+              %a{:href => "/admin/proposal/pertimbangan"} PERTIMBANGAN PROPOSAL
+            %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'penetapan' or params[:action] == 'proses_penetapan') }"}
+              %a{:href => "/admin/proposal/penetapan"} PENETAPAN PROPOSAL
   %li.no-padding
     %ul.collapsible.collapsible-accordion
       %li

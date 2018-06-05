@@ -18,5 +18,15 @@ module Admin
       return if ahoy.visit
       ahoy.track "Viewed #{controller_path}##{action_name}", params: request.path_parameters
     end
+
+    def not_found
+      raise ActionController::RoutingError.new('Not Found')
+    rescue
+      render_404
+    end
+  
+    def render_404
+      render file: "#{Rails.root}/public/422", status: :not_found
+    end
   end
 end

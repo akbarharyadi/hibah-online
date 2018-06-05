@@ -1,5 +1,10 @@
 class Hibah < ApplicationRecord
   has_many :danas,  dependent: :destroy 
+  has_many :seleksis,  dependent: :destroy 
+  has_many :distribusis,  dependent: :destroy 
+  has_many :evaluasis,  dependent: :destroy 
+  has_many :pertimbangans,  dependent: :destroy 
+  has_many :penetapans,  dependent: :destroy 
   accepts_nested_attributes_for :danas, :reject_if => :all_blank, :allow_destroy => true
   mount_uploader :gambar, AvatarUploader
   mount_uploader :proposal, DocumentUploader
@@ -14,18 +19,20 @@ class Hibah < ApplicationRecord
   end
 
   def status_hibah
-    if self.status = 0
-      "Proses seleksi"
-    elsif self.status = 1
-      "Proses disposisi"
-    elsif self.status = 2
-      "Proses verifikasi"
-    elsif self.status = 3
-      "Proses rekomendasi"
-    elsif self.status = 4
-      "Ditolak"
-    elsif self.status = 5
-      "HIBAH BANSOS Berjalan"
+    if self.status == 0
+      "Tahap seleksi"
+    elsif self.status == 1
+      "Tahap disposisi"
+    elsif self.status == 2
+      "Tahap distribusi"
+    elsif self.status == 3
+      "Tahap Evaluasi"
+    elsif self.status == 4
+      "Tahap Pertimbangan"
+    elsif self.status == 5
+      "Tahap Penetapan"
+    elsif self.status == 6
+      "Hibah Bansos Berjalan"
     end
   end
 end

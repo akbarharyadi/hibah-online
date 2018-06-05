@@ -1,4 +1,10 @@
-$(document).on 'ready turbolinks:load', ->
+
+
+$(window).load ->
+  $('.loader').fadeOut()
+  return
+
+$(document).on 'ready', ->
   ahoy.trackAll();
   window.materializeForm.init()
   $(".button-collapse").sideNav();
@@ -17,7 +23,7 @@ $(document).on 'ready turbolinks:load', ->
       'data-hint', $value
     )
 
-  $('small.error-block').tooltip({delay: 50});
+  # $('small.error-block').tooltip({delay: 50});
 
   money_fields = $('.money')
   money_fields.autoNumeric 'init',
@@ -62,3 +68,21 @@ $(document).on 'ready turbolinks:load', ->
   $('.flora-editor').froalaEditor({
       height: 600
     });
+    
+
+  $('.disposisi_btn_go').on 'click', (e) ->
+    id = $(this).attr('id')
+    mbox.prompt 'Anda yakin ingin mendisposisikan data ini? (ya/tidak)', (answer) ->
+      console.log(answer)
+      if answer != false
+        $.blockUI({ message: '<div class="loading2">Loading....</h1>' });
+        $.post '/admin/proposal/proses_disposisi', { id: id }, ((data) ->
+          $.unblockUI();
+          if data.status == 2
+            mbox.alert('Berhasil melakukan disposisi!')
+          else
+            mbox.alert('Gagal melakukan disposisi!')
+          $('.smart-listing-controls input').closest('form').submit();
+          return
+        ), 'json'
+      return

@@ -30,7 +30,7 @@
 #   }
 # ])
 
-Role.where('id in (8,9,10,11,12,13,14)').delete_all
+# Role.where('id in (8,9,10,11,12,13,14)').delete_all
 
 
 # User.create!([

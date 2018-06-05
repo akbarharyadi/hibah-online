@@ -16,7 +16,7 @@ module Admin
       @dinas = Dina.new(dinas_params)
       respond_to do |format|
         if @dinas.save
-          format.html { redirect_to admin_dinas_path, notice: 'Dinas was successfully created.' }
+          format.html { redirect_to admin_dinas_path, notice: 'Data Dinas berhasil disimpan.' }
         else
           format.html { render :new }
           format.json { render json: @dinas.errors, status: :unprocessable_entity }
@@ -30,7 +30,7 @@ module Admin
     def update
       respond_to do |format|
         if @dinas.update(dinas_params)
-          format.html { redirect_to admin_dinas_path, notice: 'Dinas was successfully updated.' }
+          format.html { redirect_to admin_dinas_path, notice: 'Data Dinas berhasil diubah.' }
         else
           format.html { render :edit }
           format.json { render json: @dinas.errors, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ module Admin
     def destroy
       @dinas.destroy
       respond_to do |format|
-        format.html { redirect_to admin_dinas_path, notice: 'Dinas was successfully destroyed.' }
+        format.html { redirect_to admin_dinas_path, notice: 'Data Dinas berhasil dihapus.' }
         format.json { head :no_content }
       end
     end

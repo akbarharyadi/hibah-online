@@ -1,0 +1,89 @@
+.row
+  .col.s12.m12
+    .col.s12.m12
+      .card-panel
+        %h5.header2
+          %a{:href => "#", :style => "padding: 0px 16px;"}
+            %i.material-icons> subject
+            DISTRIBUSI TIM PERTIMBANGAN TAPD
+      .card-panel
+        .row
+          %h5.header2 Tahap Distribusi
+          .divider
+          = simple_form_for(@dis, url: (@dis.new_record? ? admin_simpan_distribusi_path(@dis) : admin_simpan_distribusi_path(@dis)), defaults: { label_html: { class: (@dis.new_record? ? '' : 'active') } }) do |f|
+            
+            = f.input :hibah_id, :as => :hidden, input_html: {value: @hibah.id}
+            = f.input :user_id, :as => :hidden, input_html: {value: current_user.id}
+            .row
+              .form-inputs
+                .col.m12.s12
+                  .row
+                    .input-field.col.s12.text.required.seleksi_keterangan
+                      %textarea#seleksi_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "seleksi[keterangan]", :required => "required", :disabled => true}
+                        = @hibah.seleksis.last.status_seleksi + ' / ' + @hibah.seleksis.last.keterangan
+                      %label.active.text.valid{:for => "distribusi_keterangan"}
+                        Hasil Seleksi
+                  .row
+                    = f.input :dina_id, required: true, collection: Dina.all, prompt: "-- Pilih Dinas Tujuan --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                  .row
+                    = f.input :keterangan, label: 'Keterangan', required: true
+              .col.m12
+                .right{:style => "padding:20px;"}
+                  %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
+                    PROSES DISTRIBUSI
+                    %i.material-icons.right send
+                .right{:style => "padding:20px;"}
+                  = link_to 'Back', admin_proposal_distribusi_path, class:"btn cyan waves-effect waves-light right"            
+      .card-panel
+        .row
+          %h5.header2
+            = 'Judul Kegiatan : ' + @hibah.judul_kegiatan
+          .divider
+          .row
+            .col.s12.m6
+              %p
+                = image_tag(@hibah.gambar.url, class:"materialboxed image_to_upload", width:"100%")
+              .col.s12.m12
+                = link_to raw('<i class="material-icons">file_download</i> Unduh Proposal'), @hibah.proposal_url, target: "_blank", class:"btn waves-effect waves-light center col s12 m12" if @hibah.proposal.present?
+            .col.s12.m6
+              %p
+                %strong Nama:
+                = @hibah.nama
+              %p
+                %strong Alamat:
+                = @hibah.alamat
+              %p
+                %strong Judul kegiatan:
+                = @hibah.judul_kegiatan
+              %p
+                %strong Latar belakang:
+                = @hibah.latar_belakang
+              %p
+                %strong Maksud dan tujuan:
+                = @hibah.maksud_dan_tujuan
+              %p
+                %strong Tahapan:
+                = @hibah.status_hibah
+          .divider
+          .row
+            %p{:style => "padding:30px;padding-top:20px;padding-bottom:0px;"}
+              %strong Uraian Dana yang Diajukan:
+            .row
+              .col.s12.m12{:style => "padding:30px;padding-top:0px;"}
+                %table.bordered.highlight.responsive-table
+                  %thead
+                    %tr
+                      %th No
+                      %th Deskripsi keperluan
+                      %th{:style => "text-align:right"} Jumlah Dana
+                  %tbody
+                    - numb = 1
+                    - @hibah.danas.each do |dana|
+                      %tr
+                        %td= numb
+                        %td= dana.deskripsi
+                        %td{:style => "text-align:right"}= number_to_currency dana.jumlah, unit: "Rp. ", separator: ",", delimiter: "."
+                      - numb = numb+1
+                    %tr
+                      %th{:colspan => 2} Jumlah :
+                      %th{:style => "text-align:right"}= number_to_currency @hibah.danas.sum(:jumlah), unit: "Rp. ", separator: ",", delimiter: "."

@@ -16,7 +16,7 @@ module Admin
       @kategori = Kategori.new(kategori_params)
       respond_to do |format|
         if @kategori.save
-          format.html { redirect_to admin_kategoris_path, notice: 'Kategori was successfully created.' }
+          format.html { redirect_to admin_kategoris_path, notice: 'Data Kategori hibah berhasil disimpan.' }
         else
           format.html { render :new }
           format.json { render json: @kategori.errors, status: :unprocessable_entity }
@@ -30,7 +30,7 @@ module Admin
     def update
       respond_to do |format|
         if @kategori.update(kategori_params)
-          format.html { redirect_to admin_kategoris_path, notice: 'Kategori was successfully updated.' }
+          format.html { redirect_to admin_kategoris_path, notice: 'Data Kategori hibah berhasil diubah.' }
         else
           format.html { render :edit }
           format.json { render json: @kategori.errors, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ module Admin
     def destroy
       @kategori.destroy
       respond_to do |format|
-        format.html { redirect_to admin_kategoris_path, notice: 'Kategori was successfully destroyed.' }
+        format.html { redirect_to admin_kategoris_path, notice: 'Data Kategori hibah berhasil dihapus.' }
         format.json { head :no_content }
       end
     end

@@ -29,7 +29,7 @@ module Admin
 
       respond_to do |format|
         if @tentang.save
-          format.html { redirect_to admin_tentangs_path, notice: 'Tentang was successfully created.' }
+          format.html { redirect_to admin_tentangs_path, notice: 'Data Info website berhasil disimpan.' }
           format.json { render :show, status: :created, location: @tentang }
         else
           format.html { render :new }
@@ -43,7 +43,7 @@ module Admin
     def update
       respond_to do |format|
         if @tentang.update(tentang_params)
-          format.html { redirect_to admin_tentangs_path, notice: 'Tentang was successfully updated.' }
+          format.html { redirect_to admin_tentangs_path, notice: 'Data Info website berhasil diubah.' }
           format.json { render :show, status: :ok, location: @tentang }
         else
           format.html { render :edit }
@@ -57,7 +57,7 @@ module Admin
     def destroy
       @tentang.destroy
       respond_to do |format|
-        format.html { redirect_to tentangs_url, notice: 'Tentang was successfully destroyed.' }
+        format.html { redirect_to tentangs_url, notice: 'Data Info website berhasil dihapus.' }
         format.json { head :no_content }
       end
     end

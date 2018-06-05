@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422144541) do
+ActiveRecord::Schema.define(version: 20180605042402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,22 @@ ActiveRecord::Schema.define(version: 20180422144541) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "distribusis", force: :cascade do |t|
+    t.integer "dina_id"
+    t.text "keterangan"
+    t.integer "user_id"
+    t.integer "hibah_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "evaluasis", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "hibah_id"
+    t.text "keterangan"
+    t.string "file_upload"
+  end
+
   create_table "fotos", force: :cascade do |t|
     t.bigint "hibah_id"
     t.string "file"
@@ -115,11 +131,26 @@ ActiveRecord::Schema.define(version: 20180422144541) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "penetapans", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "hibah_id"
+    t.date "tgl_ketetapan"
+  end
+
   create_table "peraturans", force: :cascade do |t|
     t.string "nama"
     t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pertimbangans", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "hibah_id"
+    t.integer "status"
+    t.text "keterangan"
+    t.float "realisasi"
+    t.string "file"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -135,6 +166,15 @@ ActiveRecord::Schema.define(version: 20180422144541) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "seleksis", force: :cascade do |t|
+    t.integer "status"
+    t.text "keterangan"
+    t.integer "user_id"
+    t.integer "hibah_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

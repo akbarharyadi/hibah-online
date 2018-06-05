@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: 1
+  keterangan: MyString
+  user_id: 1
+  hibah_id: 1
+
+two:
+  status: 1
+  keterangan: MyString
+  user_id: 1
+  hibah_id: 1

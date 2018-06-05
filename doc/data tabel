@@ -72,7 +72,7 @@ tabel foto
 
 tabel seleksi
 - status (0: belum seleksi, 1: berhasil seleksi, 3: gagal seleksi, 4:koreksi) 
-- hasil
+- keterangan
 - user_id
 - hibah_id
 

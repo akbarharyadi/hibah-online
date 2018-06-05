@@ -1,6 +1,5 @@
 %main
-  - if current_page?(root_path)
-    = yield
-  - else
-    .content
+  %section.content
+    .container-fluid
       = yield
+    

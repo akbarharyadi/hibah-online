@@ -12,6 +12,34 @@ Rails.application.routes.draw do
     # proposal controller
     get 'proposal/index'
     get 'proposal/seleksi'
+    get "proposal/proses_seleksi/:id" => "proposal#proses_seleksi", as: :proses_seleksi
+    post "proposal/simpan_seleksi" => "proposal#simpan_seleksi", as: :simpan_seleksi
+    patch "proposal/simpan_seleksi" => "proposal#simpan_seleksi"
+
+    get 'proposal/disposisi'
+    post "proposal/proses_disposisi" => "proposal#proses_disposisi", as: :proses_disposisi
+
+    get 'proposal/distribusi'
+    get "proposal/proses_distribusi/:id" => "proposal#proses_distribusi", as: :proses_distribusi
+    post "proposal/simpan_distribusi" => "proposal#simpan_distribusi", as: :simpan_distribusi
+    patch "proposal/simpan_distribusi" => "proposal#simpan_distribusi"
+
+    get 'proposal/evaluasi'
+    get "proposal/proses_evaluasi/:id" => "proposal#proses_evaluasi", as: :proses_evaluasi
+    post "proposal/simpan_evaluasi" => "proposal#simpan_evaluasi", as: :simpan_evaluasi
+    patch "proposal/simpan_evaluasi" => "proposal#simpan_evaluasi"
+    
+    get 'proposal/pertimbangan'
+    get "proposal/proses_pertimbangan/:id" => "proposal#proses_pertimbangan", as: :proses_pertimbangan
+    post "proposal/simpan_pertimbangan" => "proposal#simpan_pertimbangan", as: :simpan_pertimbangan
+    patch "proposal/simpan_pertimbangan" => "proposal#simpan_pertimbangan"
+    
+    get 'proposal/penetapan'
+    get "proposal/proses_penetapan/:id" => "proposal#proses_penetapan", as: :proses_penetapan
+    post "proposal/simpan_penetapan" => "proposal#simpan_penetapan", as: :simpan_penetapan
+    patch "proposal/simpan_penetapan" => "proposal#simpan_penetapan"
+
+    get '/error', :to => redirect('/error.html')
     # get 'users/index'
 
     root to: "dashboard#index"
