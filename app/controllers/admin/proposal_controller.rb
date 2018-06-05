@@ -38,6 +38,7 @@ module Admin
       @seleksi = Seleksi.new(seleksis_params)
       @hibah = Hibah.find(params[:seleksi][:hibah_id])
       @hibah.status = 1
+      @hibah.status = 7 if @seleksi.status == 1
       respond_to do |format|
         if @seleksi.save and @hibah.save
           format.html { redirect_to admin_proposal_seleksi_path, notice: 'Proses seleksi berhasil.' }
@@ -169,6 +170,7 @@ module Admin
       @per = Pertimbangan.new(pertimbangans_params) if !@per.present?
       @hibah = Hibah.find(params[:pertimbangan][:hibah_id])
       @hibah.status = 5
+      @hibah.status = 7 if @per.status == 1
       respond_to do |format|
         if @per.save and @hibah.save
           format.html { redirect_to admin_proposal_pertimbangan_path, notice: 'Proses pertimbangan berhasil.' }
