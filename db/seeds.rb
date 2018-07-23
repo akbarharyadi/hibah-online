@@ -114,7 +114,7 @@
 #   {
 #     gambar_1: File.open(Rails.root + "app/assets/images/sitbul.jpg"),
 #     text_1_1: 'Sahate Purwakarta',
-#     text_1_2: 'Mari wujudkan ide kreaif bersama dengan wujud yang terbuka',
+#     text_1_2: 'Mari wujudkan ide kreatif bersama dengan wujud yang terbuka',
 #     text_1_3: 'Demi kepentingan bersama',
 #     gambar_2: File.open(Rails.root + "app/assets/images/f857ef6aca2e882f3a62cb1b42100c09.jpg"),
 #     text_2_1: 'Tapi tidak semua dapat tersalurkan. Sahate, semua ide kreatif diharapkan dapat diwujudkan dengan jalan keterbukaan via teknologi.',
@@ -124,3 +124,11 @@
 #     text_3_2: 'Mari wujudkan ide kreaif bersama dengan wujud yang terbuka.',
 #   }
 # ])
+
+Kunci.create!([{
+  msg_open: 'Pendaftaran Hibah Bansos dibuka. Silahkan daftarkan Hibah Bansos Anda pada menu PENDAFTARAN HIBAH.',
+  msg_close: 'Mohon maaf pendaftaran Hibah Bansos sudah ditutup.',
+  status: 0,
+  start_date: '2018-01-01',
+  final_date: '2018-10-31'
+}])

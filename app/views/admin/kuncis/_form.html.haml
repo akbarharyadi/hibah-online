@@ -1,0 +1,25 @@
+= simple_form_for(@kunci, url: admin_kunci_path(@kunci), defaults: { label_html: { class: (@kunci.new_record? ? '' : 'active') } }) do |f|
+  -# = form_for admin_homepage_path(@homepage) do |f|
+  -# - if @homepage.errors.any?
+  -#   #error_explanation
+  -#     %h2= "#{pluralize(@homepage.errors.count, "error")} prohibited this homepage from being saved:"
+  -#     %ul
+  -#       - @homepage.errors.full_messages.each do |message|
+  -#         %li= message
+  .row
+    .form-inputs
+      .col.m12.s12
+        .card-panel
+          .row
+            = f.input :status, as: :boolean, label: false, autofocus: true, wrapper_html: { class: 's12 m3' }
+          .row
+            = f.input :msg_open, label: 'Pesan Pemberitahuan (Open)', autofocus: true, wrapper_html: { class: 's12 m6' }
+          .row
+            = f.input :msg_close, label: 'Pesan Pemberitahuan (Close)', autofocus: true, wrapper_html: { class: 's12 m6' }
+          .row
+            = f.input :start_date, label: 'Dari Tanggal', autofocus: true, wrapper_html: { class: 's12 m3' }
+            = f.input :final_date, label: 'Sampai Dengan', autofocus: true, wrapper_html: { class: 's12 m3' }
+        .right{:style => "padding:20px;"}
+          %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
+            SIMPAN
+            %i.material-icons.right send

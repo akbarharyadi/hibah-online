@@ -1,6 +1,7 @@
 module Admin
   class UsersController < Admin::ApplicationController
     before_action :set_user, only: [:edit, :update]
+    before_action :set_roles
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
     #
@@ -43,6 +44,13 @@ module Admin
       @user = User.find(params[:id])
     end
 
+    def set_roles
+      if current_user.role_id == 1
+        @roles = Role.where('id != 1').all
+      else 
+        @roles = Role.where('id not in (1,2)').all
+      end
+    end
 
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :role_id, :dina_id)

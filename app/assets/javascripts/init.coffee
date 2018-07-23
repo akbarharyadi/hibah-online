@@ -36,8 +36,6 @@ $(document).on 'ready', ->
 
   $(document).find('.dana_pecahan').trigger('change')
 
-  
-
   $('.photo_upload').on 'change', (e) ->
     readURL(this);
 
@@ -86,3 +84,10 @@ $(document).on 'ready', ->
           return
         ), 'json'
       return
+  
+  $('.picker__input').each (i, obj) ->
+    $input = $(obj).pickadate()
+    picker = $input.pickadate('picker')
+    if $(this).val() != ''
+      picker.set('select', $(this).val(), { format: 'yyyy-mm-dd' })
+

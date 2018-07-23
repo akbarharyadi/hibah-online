@@ -1,6 +1,7 @@
 module Admin
   class TentangsController < Admin::ApplicationController
     before_action :set_tentang, only: [:show, :edit, :update, :destroy]
+    before_action :set_role_admin
 
     # GET /tentangs
     # GET /tentangs.json

@@ -20,13 +20,17 @@ module Admin
     end
 
     def not_found
-      raise ActionController::RoutingError.new('Not Found')
+      raise ActionController::RoutingError.new('Not Found') and return
     rescue
       render_404
     end
   
     def render_404
-      render file: "#{Rails.root}/public/422", status: :not_found
+      render file: "#{Rails.root}/public/422", status: :not_found and return
+    end
+    
+    def set_role_admin
+      not_found unless (1..3).include? current_user.role_id
     end
   end
 end

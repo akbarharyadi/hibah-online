@@ -1,6 +1,7 @@
 module Admin
   class HomepagesController < Admin::ApplicationController
     before_action :set_homepage, only: [:show, :edit, :update, :destroy]
+    before_action :set_role_admin
 
     # GET /homepages
     # GET /homepages.json

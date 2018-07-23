@@ -4,6 +4,6 @@
   %a{:href => "/home/daftar_hibah"} PROPOSAL HIBAH
 - if user_signed_in?
   %li{:class => "#{'active' if params[:controller] == 'hibahs' and params[:action] == 'new'}"}
-    = link_to 'DAFTAR HIBAH', new_hibah_url
+    = link_to 'PENDAFTARAN HIBAH', new_hibah_url
 %li{:class => "#{'active' if params[:controller] == 'home' and params[:action] == 'peraturan'}"}
   %a{:href => "/home/peraturan"} PERATURAN

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :hibahs, :path => 'hibah'
   namespace :admin do
+    resources :kuncis, only: [:update, :edit]
     resources :tentangs, :path => 'tentang', except: [:show]
     resources :peraturans, :path => 'peraturan', except: [:show]
     resources :users, except: [:show]

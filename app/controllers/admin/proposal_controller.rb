@@ -181,7 +181,7 @@ module Admin
     end
 
     def penetapan
-      before_pertimbangan
+      before_penetapan
       hibah = Hibah.all
       hibah = hibah.where("status= ?", 5)
       hibah = hibah.where("upper(judul_kegiatan) like ?", "%#{params[:judul_bansos].upcase}%") if params[:judul_bansos].present?
@@ -222,7 +222,7 @@ module Admin
     end
 
     def before_distribusi
-      not_found unless current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 6
+      not_found unless current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 4
     end
 
     def before_evaluasi

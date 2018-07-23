@@ -21,25 +21,32 @@
             %i.material-icons.right arrow_drop_down
           .collapsible-body
             %ul
-              %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and params[:action] == 'index'}"}
-                %a{:href => "/admin/proposal/index"} DAFTAR PROPOSAL
-              %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'seleksi' or params[:action] == 'proses_seleksi') }"}
-                %a{:href => "/admin/proposal/seleksi"} SELEKSI PROPOSAL
-              %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'disposisi' or params[:action] == 'proses_disposisi') }"}
-                %a{:href => "/admin/proposal/disposisi"} DISPOSISI PROPOSAL
-              %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'distribusi' or params[:action] == 'proses_distribusi') }"}
-                %a{:href => "/admin/proposal/distribusi"} DISTRIBUSI PROPOSAL
-              %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'evaluasi' or params[:action] == 'proses_evaluasi') }"}
-                %a{:href => "/admin/proposal/evaluasi"} EVALUASI PROPOSAL
-              %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'pertimbangan' or params[:action] == 'proses_pertimbangan') }"}
-                %a{:href => "/admin/proposal/pertimbangan"} PERTIMBANGAN PROPOSAL
-              %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'penetapan' or params[:action] == 'proses_penetapan') }"}
-                %a{:href => "/admin/proposal/penetapan"} PENETAPAN PROPOSAL
+              - if (1..6).include? current_user.role_id
+                %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and params[:action] == 'index'}"}
+                  %a{:href => "/admin/proposal/index"} DAFTAR PROPOSAL
+              - if [1,2,4].include? current_user.role_id
+                %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'seleksi' or params[:action] == 'proses_seleksi') }"}
+                  %a{:href => "/admin/proposal/seleksi"} SELEKSI PROPOSAL
+              - if [1,2,3].include? current_user.role_id
+                %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'disposisi' or params[:action] == 'proses_disposisi') }"}
+                  %a{:href => "/admin/proposal/disposisi"} DISPOSISI PROPOSAL
+              - if [1,2,6].include? current_user.role_id
+                %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'distribusi' or params[:action] == 'proses_distribusi') }"}
+                  %a{:href => "/admin/proposal/distribusi"} DISTRIBUSI PROPOSAL
+              - if [1,2,5].include? current_user.role_id
+                %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'evaluasi' or params[:action] == 'proses_evaluasi') }"}
+                  %a{:href => "/admin/proposal/evaluasi"} EVALUASI PROPOSAL
+              - if [1,2,6].include? current_user.role_id
+                %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'pertimbangan' or params[:action] == 'proses_pertimbangan') }"}
+                  %a{:href => "/admin/proposal/pertimbangan"} PERTIMBANGAN PROPOSAL
+              - if [1,2,3].include? current_user.role_id
+                %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'penetapan' or params[:action] == 'proses_penetapan') }"}
+                  %a{:href => "/admin/proposal/penetapan"} PENETAPAN PROPOSAL
   - if (1..3).include? current_user.role_id
     %li.no-padding
       %ul.collapsible.collapsible-accordion
         %li
-          %a.collapsible-header{:class => "#{'active' if params[:controller] == 'admin/homepages' or params[:controller] == 'admin/tentangs' or params[:controller] == 'admin/peraturans'}"}
+          %a.collapsible-header{:class => "#{'active' if params[:controller] == 'admin/homepages' or params[:controller] == 'admin/tentangs' or params[:controller] == 'admin/peraturans' or params[:controller] == 'admin/kuncis'}"}
             %i.material-icons.left> camera_front
             FRONTEND
             %i.material-icons.right arrow_drop_down
@@ -51,6 +58,8 @@
                 %a{:href => "/admin/tentang"} TENTANG
               %li{:class => "#{'active' if params[:controller] == 'admin/peraturans'}"}
                 %a{:href => "/admin/peraturan"} PERATURAN
+              %li{:class => "#{'active' if params[:controller] == 'admin/kuncis'}"}
+                = link_to 'KUNCI PENDAFTARAN', edit_admin_kunci_path(1)
     %li.no-padding
       %ul.collapsible.collapsible-accordion
         %li
@@ -60,10 +69,11 @@
             %i.material-icons.right arrow_drop_down
           .collapsible-body
             %ul
-              %li{:class => "#{'active' if params[:controller] == 'admin/users'}"}
-                %a{:href => "/admin/users"} USER
-              %li{:class => "#{'active' if params[:controller] == 'admin/roles'}"}
-                %a{:href => "/admin/roles"} ROLE
+              - if (1..2).include? current_user.role_id
+                %li{:class => "#{'active' if params[:controller] == 'admin/users'}"}
+                  %a{:href => "/admin/users"} USER
+                %li{:class => "#{'active' if params[:controller] == 'admin/roles'}"}
+                  %a{:href => "/admin/roles"} ROLE
               %li{:class => "#{'active' if params[:controller] == 'admin/dinas'}"}
                 %a{:href => "/admin/dinas"} DINAS
               %li{:class => "#{'active' if params[:controller] == 'admin/kategoris'}"}

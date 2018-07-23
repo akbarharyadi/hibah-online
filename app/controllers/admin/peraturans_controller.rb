@@ -1,6 +1,7 @@
 module Admin
   class PeraturansController < Admin::ApplicationController
     before_action :set_peraturan, only: [:show, :edit, :update, :destroy]
+    before_action :set_role_admin
 
     # GET /peraturans
     # GET /peraturans.json

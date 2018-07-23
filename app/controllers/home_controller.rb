@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   def index
     @homepage = Homepage.find(1)
+    @kunci = Kunci.find(1)
     hibah = Hibah.all
     hibah = hibah.order("id "+params[:hibah_sort]) if params[:hibah_sort].present?
     @hibahs = smart_listing_create(:hibah, hibah, partial: "home/listing_hibah")

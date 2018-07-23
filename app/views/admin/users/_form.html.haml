@@ -11,7 +11,7 @@
               = f.input :password, required: @user.new_record?, autofocus: true, wrapper_html: { class: 'm6' }
               = f.input :password_confirmation, required: @user.new_record?, autofocus: true, wrapper_html: { class: 'm6' }
           .row
-            = f.input :role_id, collection: Role.where('id != 1').all, prompt: " --- Pilih Role --- ", required: true, wrapper_html: { class: 'm6' }
+            = f.input :role_id, collection: @roles, prompt: " --- Pilih Role --- ", required: true, wrapper_html: { class: 'm6' }
             = f.input :dina_id, collection: Dina.all, prompt: " --- Pilih Dinas --- ", wrapper_html: { class: 'm6' }
   .col.m12
     .right{:style => "padding:20px;"}

@@ -16,6 +16,14 @@
       %br/
   .parallax
     = image_tag(@homepage.gambar_1.url)
+- if @kunci.status == 1
+  %marquee 
+    - if (@kunci.start_date..@kunci.final_date).cover?(Time.now)
+      %h6.col.s12.green-text
+        %i #{@kunci.msg_open}
+    - else
+      %h6.col.s12.red-text
+        %i #{@kunci.msg_close}
 .container
   .section
     / Icon Section

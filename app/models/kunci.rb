@@ -1,0 +1,2 @@
+class Kunci < ApplicationRecord
+end

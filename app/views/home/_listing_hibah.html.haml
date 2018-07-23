@@ -3,7 +3,7 @@
     .col.s12.m4
       .card
         .card-image
-          = image_tag(hibah.gambar.url, class:"materialboxed")
+          = image_tag(hibah.gambar.url, class:"materialboxed", style:"height:25vh")
         .card-content
           %p.black-text.strong
             = link_to hibah.judul_kegiatan, show_hibah_path(id: hibah.id)

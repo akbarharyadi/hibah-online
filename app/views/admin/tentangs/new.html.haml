@@ -1,9 +1,10 @@
 .row
   .col.s12.m12
-    .col.s12.m12
-      .card-panel
-        %h5.header2
-          %a{:href => "#", :style => "padding: 0px 16px;"}
-            %i.material-icons> camera_front
-            TAMBAH ITEM TENTANG
+    .block-header
+      %h2.header2
+        %a{:href => "#", :style => "padding: 0px 16px;"}
+          %i.material-icons> camera_front
+          TAMBAH ITEM TENTANG
+.row.clearfix
+  .col-lg-12.col-md-12.col-sm-12.col-xs-12
     = render 'form'

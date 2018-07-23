@@ -37,7 +37,9 @@
                       %label.active.text.valid{:for => "evaluasi_keterangan"}
                         Hasil Evaluasi
                   .row
-                    = f.input :status, required: true, collection: [['Dapat Dipertimbangkan', 0], ['Tidak Dapat Dipertimbangkan', 1]], prompt: "-- Pilih Pertimbangan --", label: '', autofocus: true, wrapper_html: { class: 'm6' }   
+                    = f.input :status, required: true, collection: [['Dapat Dipertimbangkan', 0], ['Tidak Dapat Dipertimbangkan', 1]], prompt: "-- Pilih Pertimbangan --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                  .row
+                    = f.input :usulan, label: 'Usulan', required: false, as: :string, input_html: { class: 'money m6', style: "text-align:right;", readonly: true, value: @hibah.danas.sum(:jumlah)}, wrapper_html: { class: 'm6' }
                   .row
                     = f.input :realisasi, label: 'Realisasi', required: true, as: :string, input_html: { class: 'money m6', style: "text-align:right;" }, wrapper_html: { class: 'm6' }
                   .row

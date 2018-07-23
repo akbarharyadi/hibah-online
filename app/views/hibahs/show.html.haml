@@ -89,7 +89,6 @@
                 .input-field.col.s12.text.required.evaluasi_keterangan
                   %textarea#pertimbangan_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "pertimbangan[keterangan]", :required => "required", :disabled => true}
                     = 'Data Ditetapkan Pada tanggal : ' + @hibah.penetapans.last.tgl_ketetapan.to_s if @hibah.penetapans.present?
-                  = link_to "Download File hasil pertimbangan", @hibah.penetapans.last.file_url, target: "_blank" if @hibah.penetapans.present? and ((1..6).include? current_user.role_id)
                   %label.active.text.valid{:for => "evaluasi_keterangan"}
                     Hasil Penetapan
   .row

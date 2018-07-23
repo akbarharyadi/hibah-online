@@ -2,6 +2,7 @@ class Pertimbangan < ApplicationRecord
   belongs_to :hibah
   belongs_to :user
   validates :keterangan, :status, presence: true
+  attr_accessor :usulan
   def realisasi=(realisasi)
     self[:realisasi] = realisasi.to_s.delete('.').tr(',', '.') 
   end
