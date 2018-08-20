@@ -1,14 +1,6 @@
 %footer.page-footer
   .footer-copyright
     .container
-      © #{Time.current.year} Sahate Kabupaten Purwakarta
-      .grey-text.text-lighten-4.right.footer-color
-        %a{:href => ""}
-          %i.fa.fa-twitter
-          Twitter
-        %a{:href => ""}
-          %i.fa.fa-facebook
-          Facebook
-        %a{:href => ""}
-          %i.fa.fa-instagram{:style => "vertical-align: middle;"}
-          Instagram
+      = '©' + Time.current.year.to_s + ' ' +@homepage.text_1_1.from(0).to(-3)
+      %span.sihibo2
+        = @homepage.text_1_1.last(2)

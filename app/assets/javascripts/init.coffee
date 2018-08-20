@@ -91,3 +91,7 @@ $(document).on 'ready', ->
     if $(this).val() != ''
       picker.set('select', $(this).val(), { format: 'yyyy-mm-dd' })
 
+  $('.switch-active').change ->
+    $.post '/admin/users/set_active', id: $(this).attr('id_key')
+    return
+

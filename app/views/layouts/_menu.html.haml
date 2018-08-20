@@ -3,7 +3,12 @@
 %li{:class => "#{'active' if params[:controller] == 'home' and params[:action] == 'daftar_hibah'}"}
   %a{:href => "/home/daftar_hibah"} PROPOSAL HIBAH
 - if user_signed_in?
-  %li{:class => "#{'active' if params[:controller] == 'hibahs' and params[:action] == 'new'}"}
-    = link_to 'PENDAFTARAN HIBAH', new_hibah_url
+  - if @kunci.status == 1
+    - if (@kunci.start_date..@kunci.final_date).cover?(Time.now)
+      %li{:class => "#{'active' if params[:controller] == 'hibahs' and params[:action] == 'new'}"}
+        = link_to 'PENDAFTARAN HIBAH', new_hibah_url
+    - else
+      %li{:class => "disabled"}
+        = link_to 'PENDAFTARAN HIBAH', '#'
 %li{:class => "#{'active' if params[:controller] == 'home' and params[:action] == 'peraturan'}"}
   %a{:href => "/home/peraturan"} PERATURAN

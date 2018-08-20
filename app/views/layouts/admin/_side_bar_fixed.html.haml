@@ -80,4 +80,6 @@
                 %a{:href => "/admin/kategoris"} KATEGORI
   %li.no-padding
     = link_to raw('<i class="material-icons left">highlight_off</i>LOGOUT'), destroy_user_session_url, data: {method: :delete}, :style => "padding: 0px 16px;"
+  %li.no-padding
+    = link_to raw("Login sebagai #{current_user.email} <br> Dengan Role : #{current_user.role.name}"), '#', :style => "padding: 0px 16px;"
 / <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>

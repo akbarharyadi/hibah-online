@@ -1,4 +1,4 @@
-= simple_form_for(@user, url: (@user.new_record? ? admin_users_path(@user) : admin_user_path(@user))) do |f|
+= simple_form_for(@user, url: (@user.new_record? ? admin_users_path(@user) : admin_user_path(@user)), defaults: { label_html: { class: (@user.new_record? ? '' : 'active') } }) do |f|
   / <haml_loud> f.error_notification </haml_loud>
   .card-panel
     .row
@@ -6,13 +6,20 @@
         .col.m12.s12
           .row
             = f.input :email, required: true, autofocus: true, wrapper_html: { class: 'm6' }
-          - if @user.new_record? or @user.role_id == 1 or @user.role_id == 2
+          - if current_user.role_id == 1 or current_user.role_id == 2
             .row
               = f.input :password, required: @user.new_record?, autofocus: true, wrapper_html: { class: 'm6' }
               = f.input :password_confirmation, required: @user.new_record?, autofocus: true, wrapper_html: { class: 'm6' }
           .row
             = f.input :role_id, collection: @roles, prompt: " --- Pilih Role --- ", required: true, wrapper_html: { class: 'm6' }
             = f.input :dina_id, collection: Dina.all, prompt: " --- Pilih Dinas --- ", wrapper_html: { class: 'm6' }
+          .row
+            = f.input :nama_organisasi, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+            = f.input :nama_ketua, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+          .row
+            = f.input :nomor_telp, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+          .row
+            = f.input :alamat, required: true, autofocus: true, input_html: { autocomplete: 'off' }
   .col.m12
     .right{:style => "padding:20px;"}
       %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}

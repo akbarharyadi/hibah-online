@@ -55,6 +55,7 @@ gem "chartkick"
 gem 'groupdate'
 gem "wysiwyg-rails"
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+gem "strong_password"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

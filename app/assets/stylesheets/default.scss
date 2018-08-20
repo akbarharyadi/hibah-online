@@ -3,6 +3,21 @@
     src: asset-url('MotionPicture_PersonalUseOnly.ttf') format("truetype");
 }
 
+@font-face {
+    font-family: 'BerlinSansFBDemi';
+    src: asset-url('BerlinSansFBRegular.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'BerlinSansFBDemiBold';
+    src: asset-url('BerlinSansFBDemiBold.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Arcena';
+    src: asset-url('ARCENA.ttf') format("truetype");
+}
+
 body {
     display: flex;
     min-height: 100vh;
@@ -44,7 +59,7 @@ p {
 .parallax-container {
     min-height: 380px;
     line-height: 0;
-    height: auto;
+    // height: auto;
     color: rgba(255, 255, 255, .9);
 }
 
@@ -55,7 +70,7 @@ p {
 @media only screen and (max-width: 992px) {
     .parallax-container .section {
         position: absolute;
-        top: 40%;
+        top: 10%;
     }
     #index-banner .section {
         top: 10%;
@@ -83,4 +98,34 @@ footer.page-footer {
 .font-motion-picture {
     font-family: MotionPicture, verdana, arial, helvetica, sans-serif;
     text-shadow: white 0px 0px 10px;
+}
+
+.font-BerlinSansFBDemi {
+    font-family: BerlinSansFBDemi, verdana, arial, helvetica, sans-serif;
+    text-shadow: white 0px 0px 10px;
+}
+
+.font-BerlinSansFBDemiBold {
+    font-family: BerlinSansFBDemiBold, verdana, arial, helvetica, sans-serif;
+    text-shadow: white 0px 0px 10px;
+}
+
+.font-Arcena {
+    font-family: Arcena, verdana, arial, helvetica, sans-serif;
+    text-shadow: white 0px 0px 10px;
+    font-size: 250%;
+}
+
+.sihibo {
+    margin-left: -15px;
+    background-color: black;
+    text-shadow: 0px 0px 10px black;
+    color: white;
+}
+
+.sihibo2 {
+    margin-left: -3px;
+    background-color: black;
+    text-shadow: 0px 0px 10px black;
+    color: white;
 }

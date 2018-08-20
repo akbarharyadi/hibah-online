@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     resources :kuncis, only: [:update, :edit]
     resources :tentangs, :path => 'tentang', except: [:show]
     resources :peraturans, :path => 'peraturan', except: [:show]
-    resources :users, except: [:show]
+    resources :users, except: [:show] do
+      collection do
+        post 'set_active'
+      end
+    end
     resources :dinas, except: [:show]
     resources :homepages, only: [:update, :edit]
     resources :kategoris, except: [:show]

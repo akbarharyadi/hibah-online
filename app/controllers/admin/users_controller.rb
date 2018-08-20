@@ -31,13 +31,25 @@ module Admin
     def update
       respond_to do |format|
         if @user.update(user_params)
-          format.html { redirect_to admin_users_path, notice: 'Data Info website berhasil diubah.' }
+          format.html { redirect_to admin_users_path, notice: 'Data user berhasil diubah.' }
         else
           format.html { render :edit }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
     end
+
+    def set_active
+      user = User.find_by(id: params[:id])
+      if user.activate == 0 #if local is premium, we set it to false
+        user.activate = 1
+      else
+        user.activate = 0
+      end
+      respond_to do |format|
+        format.json { render json: user.save(:validate => false) }
+      end
+    end  
 
     # Define a custom finder by overriding the `find_resource` method:
     def set_user
@@ -53,7 +65,7 @@ module Admin
     end
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :role_id, :dina_id)
+      params.require(:user).permit(:nama_ketua, :alamat, :nomor_telp, :nama_organisasi, :email, :password, :password_confirmation, :role_id, :dina_id)
     end
     # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
     # for more information

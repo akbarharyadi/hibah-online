@@ -4,9 +4,9 @@
       .card-content
         %span.card-title.center Log In
         .divider
-        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          = f.input :email, required: true, autofocus: true
-          = f.input :password, required: true, hint: false
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { autocomplete: 'off' }) do |f|
+          = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'off' }
+          = f.input :password, required: true, hint: true, input_html: { autocomplete: 'off' }
           = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
           %div{:style => "padding:10px"}
           .form-actions.center

@@ -19,8 +19,11 @@
               %thead
                 %tr
                   %th Email
+                  %th Ketua Organisasi
+                  %th Organisasi
                   %th Role
                   %th Dinas
+                  %th Aktivasi
                   %th
               %tbody
                 - @users.each do |user|
@@ -28,9 +31,21 @@
                     %td
                       = user.email
                     %td
+                      = user.nama_ketua
+                    %td
+                      = user.nama_organisasi
+                    %td
                       = user.role.name if user.role_id.present?
                     %td
                       = user.dina.name if user.dina_id.present?
+                    %td{:style => "width:10%;"}
+                      - if  user.role_id != 1
+                        .switch
+                          %label
+                            Off
+                            %input{:type => "checkbox", :checked => user.activate == 1 ? true : false, :id_key => user.id, :class => 'switch-active'}/
+                            %span.lever
+                            On
                     %td{:style => "width:10%;"}
                       - unless user.role_id == 1
                         = link_to raw('<i class="small material-icons">edit</i>'), edit_admin_user_url(user)

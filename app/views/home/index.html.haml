@@ -3,12 +3,14 @@
     .container
       %br/
       %br/
-      %h1.header.center.red-text.font-motion-picture
-        = @homepage.text_1_1
+      %h1.header.center.red-text.font-BerlinSansFBDemi
+        = @homepage.text_1_1.from(0).to(-3)
+        %span.sihibo
+          = @homepage.text_1_1.last(2)
       .row.center
-        %h2.header.col.s12.font-motion-picture.red-text
+        %h2.header.col.s12.font-Arcena.red-text
           = @homepage.text_1_2
-        %h2.header.col.s12.font-motion-picture.red-text
+        %h2.header.col.s12.font-Arcena.red-text
           = @homepage.text_1_3
       .row.center
         %a#download-button.btn-large.waves-effect.waves-light.teal.lighten-1{:href => "/home/daftar_hibah"} Lihat Proposal Hibah
@@ -19,7 +21,7 @@
 - if @kunci.status == 1
   %marquee 
     - if (@kunci.start_date..@kunci.final_date).cover?(Time.now)
-      %h6.col.s12.green-text
+      %h5.col.s12.green-text
         %i #{@kunci.msg_open}
     - else
       %h6.col.s12.red-text
@@ -46,10 +48,10 @@
   .section.no-pad-bot
     .container
       .row.center
-        %h2.header.col.s12.red-text.font-motion-picture
+        %h2.header.col.s12.red-text.font-Arcena
           = @homepage.text_2_1
       .row.center
-        %h2.header.col.s12.red-text.font-motion-picture
+        %h2.header.col.s12.red-text.font-Arcena
           = @homepage.text_2_2
   .parallax
     = image_tag(@homepage.gambar_2.url)
@@ -59,7 +61,7 @@
       .col.s12.center
         %h3
           %i.mdi-content-send.brown-text
-        %h2.font-motion-picture.header.center 
+        %h2.font-BerlinSansFBDemi.header.center 
           Daftar
           %span.red-text Bansos
         .divider
@@ -76,10 +78,10 @@
   .section.no-pad-bot
     .container
       .row.center
-        %h2.header.col.s12.red-text.font-motion-picture
+        %h2.header.col.s12.red-text.font-Arcena
           = @homepage.text_3_1
       .row.center
-        %h2.header.col.s12.red-text.font-motion-picture
+        %h2.header.col.s12.red-text.font-Arcena
           = @homepage.text_3_2
   .parallax
     = image_tag(@homepage.gambar_3.url)

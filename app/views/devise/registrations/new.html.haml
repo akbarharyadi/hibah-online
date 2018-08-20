@@ -4,12 +4,32 @@
       .card-content
         %span.card-title.center Sign Up
         .divider
-        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { autocomplete: 'off' }, defaults: { label_html: { class: 'active' } }) do |f|
           / <haml_loud> f.error_notification </haml_loud>
           .form-inputs
-            = f.input :email, required: true, autofocus: true
-            = f.input :password, required: true
-            = f.input :password_confirmation, required: true
+            .row
+              .form-inputs
+                .col.m12.s12
+                  .row
+                    = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+                    = f.input :nama_organisasi, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+                  .row
+                    = f.input :nomor_telp, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+                    = f.input :nama_ketua, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+                  .row
+                    = f.input :password, required: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+                    = f.input :password_confirmation, required: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+                  .row
+                    = f.input :alamat, required: true, autofocus: true, input_html: { autocomplete: 'off' }
+                  -# .row
+                  -#   = f.input :avatar, as: :file, required: true, input_html: { class: 'photo_upload m6', accept: 'image/jpeg, image/jpg, image/gif, image/png' }
+                  -#   .black-text.col.m6.s12
+                  -#     .input-field.col.s12.float.optional.hibah_danas_jumlah
+                  -#       / <haml_loud> f.check_box :remove_gambar </haml_loud><label for="remove_gambar">
+                  -#       / Hapus Gambar</label>
+                  -#       / </div><div class="input-field col s12 float optional hibah_danas_jumlah">
+                  -#       = image_tag(resource.avatar.url, class:"materialboxed image_to_upload", width:"150")
+                  -#   = f.input :avatar_cache, as: :hidden
           .form-actions.center
             = f.button :submit, "Sign up"
         = render "devise/shared/links"
