@@ -95,3 +95,4 @@ $(document).on 'ready', ->
     $.post '/admin/users/set_active', id: $(this).attr('id_key')
     return
 
+  $('.stepper').activateStepper();

@@ -2,58 +2,114 @@
   .col.s12.m12
     .col.s12.m12
       .card-panel
-        %h5.header2
-          %a{:href => "#", :style => "padding: 0px 16px;"}
-            %i.material-icons> subject
-            PERTIMBANGAN PROPOSAL HIBAH TAPD
-      .card-panel
         .row
-          %h5.header2 Tahap Pertimbangan
+          %h5.header2
+            %a{:href => "#", :style => "padding: 0px 16px;"}
+              %i.material-icons> subject
+              PERTIMBANGAN PROPOSAL HIBAH TAPD
           .divider
           = simple_form_for(@per, url: (@per.new_record? ? admin_simpan_pertimbangan_path(@per) : admin_simpan_pertimbangan_path(@per)), defaults: { label_html: { class: (@per.new_record? ? '' : 'active') } }) do |f|
             
             = f.input :hibah_id, :as => :hidden, input_html: {value: @hibah.id}
             = f.input :user_id, :as => :hidden, input_html: {value: current_user.id}
-            .row
-              .form-inputs
-                .col.m12.s12
-                  .row
-                    .input-field.col.s12.text.required.seleksi_keterangan
-                      %textarea#seleksi_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "seleksi[keterangan]", :required => "required", :disabled => true}
-                        = @hibah.seleksis.last.status_seleksi + ' / ' + @hibah.seleksis.last.keterangan
-                      %label.active.text.valid{:for => "distribusi_keterangan"}
-                        Hasil Seleksi
-                  .row
-                    .input-field.col.s12.text.required.seleksi_keterangan
-                      %textarea#seleksi_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "seleksi[keterangan]", :required => "required", :disabled => true}
-                        = @hibah.distribusis.last.dina.name + ' / ' + @hibah.distribusis.last.keterangan
-                      %label.active.text.valid{:for => "distribusi_keterangan"}
-                        Hasil Distribusi
-                  .row
-                    .input-field.col.s12.text.required.evaluasi_keterangan
-                      %textarea#evaluasi_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "evaluasi[keterangan]", :required => "required", :disabled => true}
-                        = @hibah.evaluasis.last.keterangan
-                      = link_to "Download File hasil evaluasi", @hibah.evaluasis.last.file_upload_url, target: "_blank" if @hibah.evaluasis.last.file_upload.present?
-                      %label.active.text.valid{:for => "evaluasi_keterangan"}
-                        Hasil Evaluasi
-                  .row
-                    = f.input :status, required: true, collection: [['Dapat Dipertimbangkan', 0], ['Tidak Dapat Dipertimbangkan', 1]], prompt: "-- Pilih Pertimbangan --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
-                  .row
-                    = f.input :usulan, label: 'Usulan', required: false, as: :string, input_html: { class: 'money m6', style: "text-align:right;", readonly: true, value: @hibah.danas.sum(:jumlah)}, wrapper_html: { class: 'm6' }
-                  .row
-                    = f.input :realisasi, label: 'Realisasi', required: true, as: :string, input_html: { class: 'money m6', style: "text-align:right;" }, wrapper_html: { class: 'm6' }
-                  .row
-                    = f.input :keterangan, label: 'Keterangan', required: true
-                  .row
-                    = f.input :file, as: :file, input_html: { class: 'm6', accept: 'application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document' }
-                    .black-text.col.m6.s12= link_to "Download File", @per.file_url, target: "_blank" if @per.file.present?
-              .col.m12
-                .right{:style => "padding:20px;"}
-                  %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
-                    PROSES PERTIMBANGAN
-                    %i.material-icons.right send
-                .right{:style => "padding:20px;"}
-                  = link_to 'Back', admin_proposal_pertimbangan_path, class:"btn cyan waves-effect waves-light right"            
+
+            
+            .col.m12.s12
+              %ul.stepper.horizontal{style:"height:750px"}
+                %li.step.done
+                  .step-title.waves-effect Seleksi
+                  .step-content
+                    .form-inputs
+                      .col.m12.s12
+                        .row
+                          .input-field.col.s12.select.disposisi_status.m6
+                            %h6 Status :
+                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                              = @hibah.seleksis.last.status_seleksi
+                            %hr
+                        -#   = f.input :status, required: true, collection: [['Sesuai Persyaratan', 0], ['Tidak Sesuai Persyaratan', 1]], prompt: "-- Pilih Seleksi --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                        .row
+                          .input-field.col.s12.text.required.seleksi_keterangan
+                            %h6 Keterangan :
+                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                              = @hibah.seleksis.last.keterangan
+                            %hr
+                %li.step.done
+                  .step-title.waves-effect Disposisi
+                  .step-content
+                    .form-inputs
+                      .col.m12.s12
+                        .row
+                          .input-field.col.s12.select.disposisi_status.m6
+                            %h6 Status :
+                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                              = @hibah.disposisis.last.status_disposisi
+                            %hr
+                        -#   = f.input :status, required: true, collection: [['Sesuai Persyaratan', 0], ['Tidak Sesuai Persyaratan', 1]], prompt: "-- Pilih Seleksi --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                        .row
+                          .input-field.col.s12.text.required.seleksi_keterangan
+                            %h6 Keterangan :
+                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                              = @hibah.disposisis.last.keterangan
+                            %hr
+                %li.step.done
+                  .step-title.waves-effect Distribusi
+                  .step-content
+                    .form-inputs
+                      .col.m12.s12
+                        .row
+                          .input-field.col.s12.select.disposisi_status.m6
+                            %h6 Dinas yang dipilh :
+                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                              = @hibah.distribusis.last.dina.name
+                            %hr
+                        -#   = f.input :status, required: true, collection: [['Sesuai Persyaratan', 0], ['Tidak Sesuai Persyaratan', 1]], prompt: "-- Pilih Seleksi --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                        .row
+                          .input-field.col.s12.text.required.seleksi_keterangan
+                            %h6 Keterangan :
+                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                              = @hibah.distribusis.last.keterangan
+                            %hr
+                %li.step.done
+                  .step-title.waves-effect Evaluasi
+                  .step-content
+                    .form-inputs
+                      .col.m12.s12
+                        .row
+                          .input-field.col.s12.select.disposisi_status.m6
+                            %h6 File hasil evaluasi :
+                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                              = link_to "Download File hasil evaluasi", @hibah.evaluasis.last.file_upload_url, target: "_blank" if @hibah.evaluasis.last.file_upload.present?
+                            %hr
+                        -#   = f.input :status, required: true, collection: [['Sesuai Persyaratan', 0], ['Tidak Sesuai Persyaratan', 1]], prompt: "-- Pilih Seleksi --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                        .row
+                          .input-field.col.s12.text.required.seleksi_keterangan
+                            %h6 Keterangan :
+                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                              = @hibah.distribusis.last.keterangan
+                            %hr
+
+                %li.step.active
+                  .step-title.waves-effect Distribusi
+                  .step-content
+                    .form-inputs
+                      .col.m12.s12
+                        .row
+                          = f.input :status, required: true, collection: [['Dapat Dipertimbangkan', 0], ['Tidak Dapat Dipertimbangkan', 1]], prompt: "-- Pilih Pertimbangan --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                        .row
+                          = f.input :usulan, label: 'Usulan', required: false, as: :string, input_html: { class: 'money m6', style: "text-align:right;", readonly: true, value: @hibah.danas.sum(:jumlah)}, wrapper_html: { class: 'm6' }
+                        .row
+                          = f.input :realisasi, label: 'Realisasi', required: true, as: :string, input_html: { class: 'money m6', style: "text-align:right;" }, wrapper_html: { class: 'm6' }
+                        .row
+                          = f.input :keterangan, label: 'Keterangan', required: true
+                        .row
+                          = f.input :file, as: :file, input_html: { class: 'm6', accept: 'application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document' }
+                          .black-text.col.m6.s12= link_to "Download File", @per.file_url, target: "_blank" if @per.file.present?
+                    .step-actions
+                      .right{:style => "padding:20px;"}
+                        %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
+                          PROSES PERTIMBANGAN
+                          %i.material-icons.right send          
       .card-panel
         .row
           %h5.header2

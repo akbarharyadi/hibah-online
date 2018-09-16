@@ -56,41 +56,112 @@
       %p{:style => "padding:30px;padding-top:20px;padding-bottom:0px;"}
         %strong Uraian Proses yang berjalan :
       .row
-        .col.s12.m12{:style => "padding:30px;padding-top:0px;"}
-          .form-inputs
-            .col.m12.s12
-              .row
-                .input-field.col.s12.text.required.seleksi_keterangan
-                  %textarea#seleksi_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "seleksi[keterangan]", :required => "required", :disabled => true}
-                    = @hibah.seleksis.last.status_seleksi + ' / ' + @hibah.seleksis.last.keterangan if @hibah.seleksis.last.present?
-                  %label.active.text.valid{:for => "distribusi_keterangan"}
-                    Hasil Seleksi
-              .row
-                .input-field.col.s12.text.required.seleksi_keterangan
-                  %textarea#seleksi_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "seleksi[keterangan]", :required => "required", :disabled => true}
-                    = @hibah.distribusis.last.dina.name + ' / ' + @hibah.distribusis.last.keterangan if @hibah.distribusis.last.present?
-                  %label.active.text.valid{:for => "distribusi_keterangan"}
-                    Hasil Distribusi
-              .row
-                .input-field.col.s12.text.required.evaluasi_keterangan
-                  %textarea#evaluasi_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "evaluasi[keterangan]", :required => "required", :disabled => true}
-                    = @hibah.evaluasis.last.keterangan if @hibah.evaluasis.last.present?
-                  = (link_to "Download File hasil evaluasi", @hibah.evaluasis.last.file_upload_url, target: "_blank" if @hibah.evaluasis.last.file_upload.present?) if @hibah.evaluasis.last.present? and ((1..6).include? current_user.role_id)
-                  %label.active.text.valid{:for => "evaluasi_keterangan"}
-                    Hasil Evaluasi
-              .row
-                .input-field.col.s12.text.required.evaluasi_keterangan
-                  %textarea#pertimbangan_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "pertimbangan[keterangan]", :required => "required", :disabled => true}
-                    = @hibah.pertimbangans.last.status_pertimbangan + ' / Realisasi : ' + number_to_currency(@hibah.pertimbangans.last.realisasi, unit: "Rp. ", separator: ",", delimiter: ".") + ' / ' + @hibah.pertimbangans.last.keterangan  if @hibah.pertimbangans.last.present?
-                  = (link_to "Download File hasil pertimbangan", @hibah.pertimbangans.last.file_url, target: "_blank" if @hibah.pertimbangans.last.file.present?)  if @hibah.pertimbangans.last.present? and ((1..6).include? current_user.role_id)
-                  %label.active.text.valid{:for => "evaluasi_keterangan"}
-                    Hasil Pertimbangan
-              .row
-                .input-field.col.s12.text.required.evaluasi_keterangan
-                  %textarea#pertimbangan_keterangan.materialize-textarea.validate.text.required.valid{"aria-required" => "true", :name => "pertimbangan[keterangan]", :required => "required", :disabled => true}
-                    = 'Data Ditetapkan Pada tanggal : ' + @hibah.penetapans.last.tgl_ketetapan.to_s if @hibah.penetapans.present?
-                  %label.active.text.valid{:for => "evaluasi_keterangan"}
-                    Hasil Penetapan
+        .col.m12.s12
+          %ul.stepper.horizontal
+            %li.step.active
+              .step-title.waves-effect Seleksi
+              .step-content
+                .form-inputs
+                  .col.m12.s12
+                    .row
+                      .input-field.col.s12.select.disposisi_status.m6
+                        %h6 Status :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = @hibah.seleksis.last.status_seleksi if @hibah.seleksis.last.present?
+                        %hr
+                      -#   = f.input :status, required: true, collection: [['Sesuai Persyaratan', 0], ['Tidak Sesuai Persyaratan', 1]], prompt: "-- Pilih Seleksi --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                    .row
+                      .input-field.col.s12.text.required.seleksi_keterangan
+                        %h6 Keterangan :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = @hibah.seleksis.last.keterangan if @hibah.seleksis.last.present?
+                        %hr
+            %li.step
+              .step-title.waves-effect Disposisi
+              .step-content
+                .form-inputs
+                  .col.m12.s12
+                    .row
+                      .input-field.col.s12.select.disposisi_status.m6
+                        %h6 Status :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = @hibah.disposisis.last.status_disposisi if @hibah.disposisis.last.present?
+                        %hr
+                    -#   = f.input :status, required: true, collection: [['Sesuai Persyaratan', 0], ['Tidak Sesuai Persyaratan', 1]], prompt: "-- Pilih Seleksi --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                    .row
+                      .input-field.col.s12.text.required.seleksi_keterangan
+                        %h6 Keterangan :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = @hibah.disposisis.last.keterangan if @hibah.disposisis.last.present?
+                        %hr
+
+            %li.step
+              .step-title.waves-effect Distribusi
+              .step-content
+                .form-inputs
+                  .col.m12.s12
+                    .row
+                      .input-field.col.s12.select.disposisi_status.m6
+                        %h6 Dinas yang dipilh :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = @hibah.distribusis.last.dina.name if @hibah.distribusis.last.present?
+                        %hr
+                    -#   = f.input :status, required: true, collection: [['Sesuai Persyaratan', 0], ['Tidak Sesuai Persyaratan', 1]], prompt: "-- Pilih Seleksi --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                    .row
+                      .input-field.col.s12.text.required.seleksi_keterangan
+                        %h6 Keterangan :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = @hibah.distribusis.last.keterangan if @hibah.distribusis.last.present?
+                        %hr
+
+            %li.step
+              .step-title.waves-effect Evaluasi
+              .step-content
+                .form-inputs
+                  .col.m12.s12
+                    .row
+                      .input-field.col.s12.text.required.seleksi_keterangan
+                        %h6 Keterangan :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = @hibah.evaluasis.last.keterangan if @hibah.distribusis.last.present?
+                        %hr
+                            
+            %li.step
+              .step-title.waves-effect Pertimbangan
+              .step-content
+                .form-inputs
+                  .col.m12.s12
+                    .row
+                      .input-field.col.s12.select.disposisi_status.m6
+                        %h6 Status Pertimbangan :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = @hibah.pertimbangans.last.status_pertimbangan if @hibah.pertimbangans.last.present?
+                        %hr
+                    .row
+                      .input-field.col.s12.select.disposisi_status.m6
+                        %h6 Realisasi :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = number_to_currency(@hibah.pertimbangans.last.realisasi, unit: "Rp. ", separator: ",", delimiter: ".") if @hibah.pertimbangans.last.present?
+                        %hr
+                    .row
+                      .input-field.col.s12.text.required.seleksi_keterangan
+                        %h6 Keterangan :
+                        %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                          = @hibah.pertimbangans.last.keterangan if @hibah.pertimbangans.last.present?
+                        %hr
+                              
+
+                %li.step
+                  .step-title.waves-effect Penetapan
+                  .step-content
+                    .form-inputs
+                      .row
+                        .input-field.col.s12.select.disposisi_status.m6
+                          %h6 Tanggal Ditetapkan :
+                          %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
+                            = @hibah.penetapans.last.tgl_ketetapan if @hibah.penetapans.last.present?
+                          %hr
+      
   .row
     .col.s12.m12
       .right{:style => "padding:20px;"}

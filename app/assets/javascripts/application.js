@@ -26,4 +26,5 @@
 // = require froala_editor.min.js
 // = require mbox
 // = require blockUI
+// = require materialize-stepper.min
 // = require init

@@ -9,6 +9,7 @@ $secondary-color: color("green", "base") !default;
 @import "froala_editor.min";
 @import "froala_style.min";
 @import "mbox";
+@import "materialize-stepper.min";
 // @import "font-awesome-sprockets";
 // @import "font-awesome";
 // Variables
@@ -371,7 +372,8 @@ section.content {
     border: 1px solid #eee;
 }
 
-.table-bordered tbody tr td, .table-bordered tbody tr th {
+.table-bordered tbody tr td,
+.table-bordered tbody tr th {
     padding: 10px;
     border: 1px solid #eee;
 }
@@ -379,4 +381,4 @@ section.content {
 .loading2 {
     background: transparent asset-data-url('loading2.gif') center no-repeat;
     height: 130px;
-  }
+}

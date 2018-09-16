@@ -9,20 +9,29 @@
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
           = f.error_notification
           .form-inputs
-            = f.input :email, required: true, autofocus: true
-            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-              %p
-                Currently waiting confirmation for:
-                \#{resource.unconfirmed_email}
-            = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
-            = f.input :password_confirmation, required: false
-            = f.input :current_password, hint: "We need your current password to confirm your changes", required: true
-          %span.card-title.center Update my account
+            .row
+              = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+              = f.input :nama_organisasi, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+            .row
+              = f.input :nomor_telp, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+              = f.input :nama_ketua, required: true, autofocus: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+            .row
+              = f.input :password, required: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }, hint: "Biarkan kosong jika tidak ingin mengganti password", required: false
+              = f.input :password_confirmation, required: true, input_html: { autocomplete: 'off' }, wrapper_html: { class: 'm6' }
+            .row
+              = f.input :current_password, hint: "Masukan password sekarang untuk validasi penggantian informasi akun", required: true
+            .row
+              = f.input :alamat, required: true, autofocus: true, input_html: { autocomplete: 'off' }
+            .row
+              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                %p
+                  Currently waiting confirmation for:
+                  \#{resource.unconfirmed_email}
+          %span.card-title.center Ubah Akun
           .divider
           .form-actions
             = f.button :submit, "Update"
-        %span.card-title.center Cancel my account
+        %span.card-title.center Hapus Akun
         .divider
-        %p Unhappy?
         = link_to "Back", :back, class: "btn"
         = link_to "Cancel my account", registration_path(resource_name), class: "btn", data: { confirm: "Are you sure?" }, method: :delete

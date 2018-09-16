@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     patch "proposal/simpan_seleksi" => "proposal#simpan_seleksi"
 
     get 'proposal/disposisi'
-    post "proposal/proses_disposisi" => "proposal#proses_disposisi", as: :proses_disposisi
+    get "proposal/proses_disposisi/:id" => "proposal#proses_disposisi", as: :proses_disposisi
+    post "proposal/simpan_disposisi" => "proposal#simpan_disposisi", as: :simpan_disposisi
+    patch "proposal/simpan_disposisi" => "proposal#simpan_disposisi"
 
     get 'proposal/distribusi'
     get "proposal/proses_distribusi/:id" => "proposal#proses_distribusi", as: :proses_distribusi

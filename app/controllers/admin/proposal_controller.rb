@@ -63,12 +63,23 @@ module Admin
     def proses_disposisi
       before_disposisi
       @hibah = Hibah.find(params[:id])
+      @diss = Disposisi.where(hibah_id: params[:id]).last
+      @disposisi = Disposisi.new
+      @disposisi.status = @diss.status if @diss.present?
+      @disposisi.keterangan = @diss.keterangan if @diss.present?
+    end
+
+    def simpan_disposisi
+      before_disposisi
+      @diss = Disposisi.new(disposisis_params)
+      @hibah = Hibah.find(params[:disposisi][:hibah_id])
       @hibah.status = 2
+      @hibah.status = 7 if @diss.status == 1
       respond_to do |format|
-        if @hibah.save
-          format.json { render json: @hibah }
+        if @diss.save and @hibah.save
+          format.html { redirect_to admin_proposal_disposisi_path, notice: 'Proses disposisi berhasil.' }
         else
-          format.json { render json: @hibah }
+          format.html { render :proses_disposisi }
         end
       end
     end
@@ -239,6 +250,10 @@ module Admin
     
     def seleksis_params
       params.require(:seleksi).permit(:status, :keterangan, :user_id, :hibah_id, :id)
+    end
+    
+    def disposisis_params
+      params.require(:disposisi).permit(:status, :keterangan, :user_id, :hibah_id, :id)
     end
     
     def distribusis_params

@@ -6,10 +6,9 @@
           %h5.header2
             %a{:href => "#", :style => "padding: 0px 16px;"}
               %i.material-icons> subject
-              DISTRIBUSI TIM PERTIMBANGAN TAPD
+              SELEKSI PROPOSAL BAG. TU SETDA
           .divider
-          = simple_form_for(@dis, url: (@dis.new_record? ? admin_simpan_distribusi_path(@dis) : admin_simpan_distribusi_path(@dis)), defaults: { label_html: { class: (@dis.new_record? ? '' : 'active') } }) do |f|
-            
+          = simple_form_for(@disposisi, url: (@disposisi.new_record? ? admin_simpan_disposisi_path(@disposisi) : admin_simpan_disposisi_path(@disposisi)), defaults: { label_html: { class: (@disposisi.new_record? ? '' : 'active') } }) do |f|
             = f.input :hibah_id, :as => :hidden, input_html: {value: @hibah.id}
             = f.input :user_id, :as => :hidden, input_html: {value: current_user.id}
 
@@ -33,39 +32,20 @@
                             %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
                               = @hibah.seleksis.last.keterangan
                             %hr
-                %li.step.done
+                %li.step.active
                   .step-title.waves-effect Disposisi
                   .step-content
                     .form-inputs
                       .col.m12.s12
                         .row
-                          .input-field.col.s12.select.disposisi_status.m6
-                            %h6 Status :
-                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
-                              = @hibah.disposisis.last.status_disposisi
-                            %hr
-                        -#   = f.input :status, required: true, collection: [['Sesuai Persyaratan', 0], ['Tidak Sesuai Persyaratan', 1]], prompt: "-- Pilih Seleksi --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
-                        .row
-                          .input-field.col.s12.text.required.seleksi_keterangan
-                            %h6 Keterangan :
-                            %pre.darken-3{style: "padding: 5px 10px; border-radius: 3px"}
-                              = @hibah.disposisis.last.keterangan
-                            %hr
-
-                %li.step.active
-                  .step-title.waves-effect Distribusi
-                  .step-content
-                    .form-inputs
-                      .col.m12.s12
-                        .row
-                          = f.input :dina_id, required: true, collection: Dina.all, prompt: "-- Pilih Dinas Tujuan --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
+                          = f.input :status, required: true, collection: [['Sesuai Persyaratan', 0], ['Tidak Sesuai Persyaratan', 1]], prompt: "-- Pilih Seleksi --", label: '', autofocus: true, wrapper_html: { class: 'm6' }
                         .row
                           = f.input :keterangan, label: 'Keterangan', required: true
                     .step-actions
                       .right{:style => "padding:20px;"}
                         %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
-                          PROSES DISTRIBUSI
-                          %i.material-icons.right send           
+                          PROSES DISPOSISI
+                          %i.material-icons.right send    
       .card-panel
         .row
           %h5.header2
