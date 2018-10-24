@@ -7,35 +7,27 @@
   .col-lg-12.col-md-12.col-sm-12.col-xs-12
     .card
       .header
-        %a{:href => "#", :style => "padding: 0px 16px;"}
-          %i.material-icons> description
-          USER VISIT
+        USER ACTIVITYS
       .body
-        = line_chart Ahoy::Visit.group_by_day(:started_at).count, xtitle: "Tanggal Login", ytitle: "Jumlah"
+        = line_chart Ahoy::Visit.group_by_day(:started_at).count, ytitle: "Jumlah"
 .row.clearfix
   .col-lg-12.col-md-12.col-sm-12.col-xs-12
     .card
       .header
-        %a{:href => "#", :style => "padding: 0px 16px;"}
-          %i.material-icons> accessibility
-          Jumlah Visit per User
+        USER VISITS
       .body
         = pie_chart Ahoy::Visit.joins(:user).where('user_id is not null').group(:email).count
 .row.clearfix
   .col-lg-12.col-md-12.col-sm-12.col-xs-12
     .card
       .header
-        %a{:href => "#", :style => "padding: 0px 16px;"}
-          %i.material-icons> label
-          Jumlah Hibah per Bulan dan tahun
+        USER VISITS BY MONTH
       .body
         = column_chart Hibah.group_by_month_of_year(:created_at).count      
 .row.clearfix
   .col-lg-12.col-md-12.col-sm-12.col-xs-12
     .card
       .header
-        %a{:href => "#", :style => "padding: 0px 16px;"}
-          %i.material-icons> label
-          Activity website
+        Activity website
       .body
         = smart_listing_render(:users)

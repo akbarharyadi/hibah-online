@@ -1,0 +1,49 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Laporan Hibah Bansos") do |sheet|
+  sheet.add_row [@line_1]
+  sheet.add_row [@line_2]
+  sheet.add_row [""]
+
+  sheet.merge_cells "A1:G1"
+  sheet.merge_cells "A2:G2"
+  sheet.merge_cells "A3:G3"
+
+  sheet.add_style "A1:A1", alignment: { horizontal: :center }, b: true, sz: 16
+  sheet.add_style "A2:A2", alignment: { horizontal: :center }, b: true, sz: 14
+
+  sheet.add_row [
+    'ID Hibah', 
+    'Judul Kegiatan', 
+    'Organisasi', 
+    'Nama Ketua Organisasi', 
+    'Tahap', 
+    'Nilai yang Diajukan (Rp.)', 
+    'Realisasi (Rp.)'
+  ]
+
+  count = 5
+  @query.each do |hibah|
+    sheet.add_row [
+      hibah.created_at.to_time.to_i.to_s + '#' + hibah.id.to_s,
+      hibah.judul_kegiatan,
+      hibah.user.try(:nama_organisasi),
+      hibah.user.try(:nama_ketua),
+      hibah.status_hibah,
+      hibah.danas.sum(:jumlah),
+      hibah.pertimbangans.last.try(:realisasi),
+    ] , :types => [nil, nil, nil, :string]
+    count += 1
+  end
+
+  sheet.add_row [
+    'Total',
+    '',
+    '',
+    '',
+    '',
+    "=SUM(F5:F#{count-1})",
+    "=SUM(G5:G#{count-1})",
+  ] , :types => [nil, nil, nil, :string]
+
+  sheet.add_style 'F5:G'+(count).to_s, num_fmt: 4
+end

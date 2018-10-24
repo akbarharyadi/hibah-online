@@ -6,6 +6,7 @@ class Hibah < ApplicationRecord
   has_many :pertimbangans,  dependent: :destroy 
   has_many :penetapans,  dependent: :destroy 
   has_many :disposisis,  dependent: :destroy 
+  belongs_to :user
   accepts_nested_attributes_for :danas, :reject_if => :all_blank, :allow_destroy => true
   mount_uploader :gambar, AvatarUploader
   mount_uploader :proposal, DocumentUploader

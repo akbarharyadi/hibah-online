@@ -14,7 +14,7 @@ gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+# gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'webpacker'
 gem 'react-rails'
-gem 'materialize-sass'
+gem 'materialize-sass', '~> 0.100.2'
 gem 'material_icons'
 gem 'simple_form'
 gem 'materialize-form'
@@ -56,6 +56,15 @@ gem 'groupdate'
 gem "wysiwyg-rails"
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 gem "strong_password"
+gem 'sassc'
+gem 'sassc-rails'
+
+# generating exel
+gem 'rubyzip', '~> 1.1.0'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
+gem 'axlsx_styler'
+gem "roo", "~> 2.7.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

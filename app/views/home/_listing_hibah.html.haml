@@ -20,6 +20,10 @@
             %strong Nilai yang diajukan :
             %br/
             = number_to_currency hibah.danas.sum(:jumlah), unit: "Rp. ", separator: ",", delimiter: "."
+          %p
+            %strong Nilai Realisasi :
+            %br/
+            = number_to_currency(@hibah.pertimbangans.last.realisasi, unit: "Rp. ", separator: ",", delimiter: ".") if @hibah.pertimbangans.last.present?
   = smart_listing.paginate
 - else
   %p No Record Found!

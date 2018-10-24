@@ -22,10 +22,11 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: hibahuser
   password: password
+  port: 5433
 
 development:
   <<: *default
-  database: sahate_development
+  database: sahate
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

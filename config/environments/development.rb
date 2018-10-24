@@ -8,7 +8,6 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-
   # Show full error reports.
   config.consider_all_requests_local = true
 
@@ -53,4 +52,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   config.webpacker.check_yarn_integrity = false
+
+  
+  # config.sass.inline_source_maps = true
 end
