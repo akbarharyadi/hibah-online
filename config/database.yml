@@ -84,3 +84,4 @@ test:
 production:
   <<: *default
   database: sahate
+  port: 5432
