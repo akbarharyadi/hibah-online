@@ -54,6 +54,32 @@
               - if [1,2,3].include? current_user.role_id
                 %li{:class => "#{'active' if params[:controller] == 'admin/proposal' and (params[:action] == 'penetapan' or params[:action] == 'proses_penetapan') }"}
                   %a{:href => "/admin/proposal/penetapan"} PENETAPAN PROPOSAL
+  - if (1..6).include? current_user.role_id
+    %li.no-padding
+      %ul.collapsible.collapsible-accordion
+        %li
+          %a.collapsible-header{:class => "#{'active' if params[:controller] == 'admin/pelaporans'}"}
+            %i.material-icons.left> library_books
+            PELAPORAN
+            %i.material-icons.right arrow_drop_down
+          .collapsible-body
+            %ul
+              %li{:class => "#{'active' if params[:controller] == 'admin/homepages'}"}
+                = link_to 'LIST HIBAH', admin_list_hibah_path
+  - if (1..3).include? current_user.role_id
+    %li.no-padding
+      %ul.collapsible.collapsible-accordion
+        %li
+          %a.collapsible-header{:class => ""}
+            %i.material-icons.left> arrow_back
+            REVISI
+            %i.material-icons.right arrow_drop_down
+          .collapsible-body
+            %ul
+              %li{:class => ""}
+                = link_to 'REVISI PROPOSAL', '#'
+              %li{:class => ""}
+                = link_to 'REVISI REALISASI', '#'
   - if (1..3).include? current_user.role_id
     %li.no-padding
       %ul.collapsible.collapsible-accordion

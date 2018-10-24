@@ -17,8 +17,8 @@
           .row
             = f.input :msg_close, label: 'Pesan Pemberitahuan (Close)', autofocus: true, wrapper_html: { class: 's12 m6' }
           .row
-            = f.input :start_date, label: 'Dari Tanggal', autofocus: true, wrapper_html: { class: 's12 m3' }
-            = f.input :final_date, label: 'Sampai Dengan', autofocus: true, wrapper_html: { class: 's12 m3' }
+            = f.input :start_date, as: :date, label: 'Dari Tanggal', autofocus: true, wrapper_html: { class: 's12 m3 datepicker' }
+            = f.input :final_date, as: :date, label: 'Sampai Dengan', autofocus: true, wrapper_html: { class: 's12 m3 datepicker' }
         .right{:style => "padding:20px;"}
           %button.btn.cyan.waves-effect.waves-light.right{:type => "submit"}
             SIMPAN

@@ -29,12 +29,14 @@
                       .input-field.col.s8
                         %select{name: 'status_bansos'}
                           %option{:disabled => "disabled", :selected => "selected", :value => ""} Pilih Berdasar Kategori
-                          %option{:value => 0} Proses seleksi
-                          %option{:value => 1} Proses disposisi
-                          %option{:value => 2} Proses verifikasi
-                          %option{:value => 3} Proses rekomendasi
-                          %option{:value => 4} Proses Ditolak
-                          %option{:value => 5} Proses BANSOS Berjalan
+                          %option{:value => 0} Tahap seleksi
+                          %option{:value => 1} Tahap disposisi
+                          %option{:value => 2} Tahap distribusi
+                          %option{:value => 3} Tahap Evaluasi
+                          %option{:value => 4} Tahap Pertimbangan
+                          %option{:value => 5} Tahap Penetapan
+                          %option{:value => 6} Hibah Bansos Berjalan
+                          %option{:value => 7} Hibah Bansos Ditolak
           .row
             .col-lg-12.col-md-12.col-sm-12.col-xs-12.responsive-table
               = smart_listing_render(:hibah)

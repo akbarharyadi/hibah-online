@@ -19,10 +19,10 @@
 - if @kunci.status == 1
   %marquee 
     - if (@kunci.start_date..@kunci.final_date).cover?(Time.now)
-      %h5.col.s12.green-text
+      %h4.col.s12.green-text
         %i #{@kunci.msg_open}
     - else
-      %h5.col.s12.red-text
+      %h4.col.s12.red-text
         %i #{@kunci.msg_close}
 .container
   .section
