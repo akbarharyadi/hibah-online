@@ -9,7 +9,7 @@ class User < ApplicationRecord
     # Uncomment the below debug statement to view the properties of the returned self model values.
     # logger.debug self.to_yaml
       
-    super && self.activate == 1
+    super
   end
 
   # Include default devise modules. Others available are:
