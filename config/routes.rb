@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     patch "proposal/simpan_penetapan" => "proposal#simpan_penetapan"
 
     get 'pelaporans/report_hibah' => "pelaporans#report_hibah", as: :list_hibah
+    get 'pelaporans/report_hibah_penetapan' => "pelaporans#report_penetapan", as: :list_hibah_penetapan
 
     get '/error', :to => redirect('/error.html')
     # get 'users/index'

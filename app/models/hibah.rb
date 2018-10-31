@@ -34,7 +34,7 @@ class Hibah < ApplicationRecord
     elsif self.status == 5
       "Tahap Penetapan"
     elsif self.status == 6
-      "Hibah Bansos Berjalan"
+      "Usulan telah disetujui"
     elsif self.status == 7
       "Hibah Bansos Ditolak"
     end

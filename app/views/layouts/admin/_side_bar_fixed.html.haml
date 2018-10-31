@@ -64,8 +64,10 @@
             %i.material-icons.right arrow_drop_down
           .collapsible-body
             %ul
-              %li{:class => "#{'active' if params[:controller] == 'admin/homepages'}"}
-                = link_to 'LIST HIBAH', admin_list_hibah_path
+              %li{:class => "#{'active' if params[:controller] == 'admin/pelaporans' and params[:action] == 'report_hibah'}"}
+                = link_to 'LAP. HIBAH DISETUJUI', admin_list_hibah_path
+              %li{:class => "#{'active' if params[:controller] == 'admin/pelaporans' and params[:action] == 'report_penetapan'}"}
+                = link_to 'LAP. HIBAH (SEMUA)', admin_list_hibah_penetapan_path
   - if (1..3).include? current_user.role_id
     %li.no-padding
       %ul.collapsible.collapsible-accordion

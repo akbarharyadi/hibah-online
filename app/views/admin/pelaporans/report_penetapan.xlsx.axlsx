@@ -14,11 +14,13 @@ wb.add_worksheet(name: "Laporan Hibah Bansos") do |sheet|
   sheet.add_row [
     'ID Hibah', 
     'Judul Kegiatan', 
-    'Organisasi', 
-    'Nama Ketua Organisasi', 
-    'Tahap', 
-    'Nilai yang Diajukan (Rp.)', 
-    'Nilai yang Disetujui (Rp.)'
+    'Penerima', 
+    'Tanggal Penetapan', 
+    'Jumlah (Rp.)', 
+    'Realisasi (Rp.)', 
+    'Tanggal Realisasi',
+    'Persentase',
+    'Keterangan'
   ]
 
   count = 5
@@ -27,10 +29,12 @@ wb.add_worksheet(name: "Laporan Hibah Bansos") do |sheet|
       hibah.created_at.to_time.to_i.to_s + '#' + hibah.id.to_s,
       hibah.judul_kegiatan,
       hibah.user.try(:nama_organisasi),
-      hibah.user.try(:nama_ketua),
-      (hibah.status_hibah == 'Usulan telah disetujui' ? 'Tahap Disetujui' : hibah.status_hibah),
+      hibah.penetapans.last.try(:tgl_ketetapan),
       hibah.danas.sum(:jumlah),
       hibah.pertimbangans.last.try(:realisasi),
+      "",
+      "=F#{count}/E#{count}",
+      ""
     ], :widths => [:ignore]
     count += 1
   end
@@ -42,9 +46,12 @@ wb.add_worksheet(name: "Laporan Hibah Bansos") do |sheet|
     '',
     '',
     "=SUM(F5:F#{count-1})",
-    "=SUM(G5:G#{count-1})",
+    '',
+    ''
   ], :widths => [:ignore]
 
-  sheet.add_style 'F5:G'+(count).to_s, num_fmt: 4
-  sheet.add_style "A#{count}:G{count}", b: true
+
+  sheet.add_style 'E5:F'+(count).to_s, num_fmt: 4
+  sheet.add_style 'H5:H'+(count).to_s, num_fmt: 9
+  sheet.add_style "A#{count}:H{count}", b: true
 end

@@ -2,14 +2,14 @@
   %h2.header2
     %a{:href => "#", :style => "padding: 0px 16px;"}
       %i.material-icons> library_books
-      LAPORAN HIBAH YANG TELAH DISETUJUI
-  = simple_form_for :hibah, url: admin_list_hibah_path(:format => 'xlsx'), :method => :get, :class => "form-horizontal", :role => "form"  do |f|
+      LAPORAN HIBAH BANSOS
+  = simple_form_for :hibah, url: admin_list_hibah_penetapan_path(:format => 'xlsx'), :method => :get, :class => "form-horizontal", :role => "form"  do |f|
     .row
       .form-inputs
         .col.m12.s12
           .card-panel
             .row
-              = f.input :msg_open, collection: [['Tahap Disetujui', 6]], label: 'Status Hibah', autofocus: true, wrapper_html: { class: 's12 m6' }, selected: 6
+              = f.input :msg_open, collection: [['Semua', 0]], label: 'Status Hibah', autofocus: true, wrapper_html: { class: 's12 m6' }, selected: 0
             .row
               = f.input :start_date, as: :date, label: 'Dari Tanggal', autofocus: true, wrapper_html: { class: 's12 m3' }, input_html: {class: 'picker__input'}
               = f.input :final_date, as: :date, label: 'Sampai Dengan', autofocus: true, wrapper_html: { class: 's12 m3' }, input_html: {class: 'picker__input'}
