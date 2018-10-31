@@ -4,9 +4,9 @@ wb.add_worksheet(name: "Laporan Hibah Bansos") do |sheet|
   sheet.add_row [@line_2]
   sheet.add_row [""]
 
-  sheet.merge_cells "A1:G1"
-  sheet.merge_cells "A2:G2"
-  sheet.merge_cells "A3:G3"
+  sheet.merge_cells "A1:I1"
+  sheet.merge_cells "A2:I2"
+  sheet.merge_cells "A3:I3"
 
   sheet.add_style "A1:A1", alignment: { horizontal: :center }, b: true, sz: 16
   sheet.add_style "A2:A2", alignment: { horizontal: :center }, b: true, sz: 14
@@ -53,5 +53,5 @@ wb.add_worksheet(name: "Laporan Hibah Bansos") do |sheet|
 
   sheet.add_style 'E5:F'+(count).to_s, num_fmt: 4
   sheet.add_style 'H5:H'+(count).to_s, num_fmt: 9
-  sheet.add_style "A#{count}:H{count}", b: true
+  sheet.add_style "A#{count}:I{count}", b: true
 end
