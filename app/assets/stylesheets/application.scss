@@ -382,3 +382,23 @@ section.content {
     background: transparent asset-data-url('loading2.gif') center no-repeat;
     height: 130px;
 }
+
+th {
+    vertical-align: baseline;
+}
+
+td {
+    vertical-align: baseline;
+}
+
+.middle {
+    vertical-align: middle;
+}
+
+.text-red {
+    color: red;
+}
+
+.text-green {
+    color: green;
+}

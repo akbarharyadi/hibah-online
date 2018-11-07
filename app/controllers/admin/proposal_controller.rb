@@ -15,11 +15,11 @@ module Admin
     def seleksi
       before_seleksi
       hibah = Hibah.all
-      hibah = hibah.where("status= ?", 0)
+      hibah = hibah.order("created_at desc")
       hibah = hibah.where("upper(judul_kegiatan) like ?", "%#{params[:judul_bansos].upcase}%") if params[:judul_bansos].present?
       hibah = hibah.where("upper(nama) like ?", "%#{params[:organisasi_bansos].upcase}%") if params[:organisasi_bansos].present?
       # hibah = hibah.where("judul_kegiatan", params[:judul_bansos]) if params[:judul_bansos].present?
-      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah")
+      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah_seleksi")
       @judul = 'SELEKSI PROPOSAL HIBAH'
       render "admin/proposal/index_global"
     end
@@ -51,11 +51,11 @@ module Admin
     def disposisi
       before_disposisi
       hibah = Hibah.all
-      hibah = hibah.where("status= ?", 1)
+      hibah = hibah.order("created_at desc")
       hibah = hibah.where("upper(judul_kegiatan) like ?", "%#{params[:judul_bansos].upcase}%") if params[:judul_bansos].present?
       hibah = hibah.where("upper(nama) like ?", "%#{params[:organisasi_bansos].upcase}%") if params[:organisasi_bansos].present?
       # hibah = hibah.where("judul_kegiatan", params[:judul_bansos]) if params[:judul_bansos].present?
-      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah")
+      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah_disposisi")
       @judul = 'DISPOSISI PROPOSAL HIBAH'
       render "admin/proposal/index_global"
     end
@@ -87,11 +87,11 @@ module Admin
     def distribusi
       before_distribusi
       hibah = Hibah.all
-      hibah = hibah.where("status= ?", 2)
+      hibah = hibah.order("created_at desc")
       hibah = hibah.where("upper(judul_kegiatan) like ?", "%#{params[:judul_bansos].upcase}%") if params[:judul_bansos].present?
       hibah = hibah.where("upper(nama) like ?", "%#{params[:organisasi_bansos].upcase}%") if params[:organisasi_bansos].present?
       # hibah = hibah.where("judul_kegiatan", params[:judul_bansos]) if params[:judul_bansos].present?
-      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah")
+      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah_distribusi")
       @judul = 'DISTRIBUSI PROPOSAL HIBAH'
       render "admin/proposal/index_global"
     end
@@ -124,11 +124,10 @@ module Admin
       before_evaluasi
       hibah = Hibah.all
       hibah = hibah.joins(:distribusis)
-      hibah = hibah.where("status= ?", 3)
-      hibah = hibah.where("dina_id= ?", current_user.dina_id) unless current_user.role_id == 1 or current_user.role_id == 2
+      hibah = hibah.order("created_at desc")
       hibah = hibah.where("upper(judul_kegiatan) like ?", "%#{params[:judul_bansos].upcase}%") if params[:judul_bansos].present?
       hibah = hibah.where("upper(nama) like ?", "%#{params[:organisasi_bansos].upcase}%") if params[:organisasi_bansos].present?
-      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah")
+      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah_evaluasi")
       @judul = 'EVALUASI PROPOSAL HIBAH'
       render "admin/proposal/index_global"
     end
@@ -159,10 +158,10 @@ module Admin
     def pertimbangan
       before_pertimbangan
       hibah = Hibah.all
-      hibah = hibah.where("status= ?", 4)
+      hibah = hibah.order("created_at desc")
       hibah = hibah.where("upper(judul_kegiatan) like ?", "%#{params[:judul_bansos].upcase}%") if params[:judul_bansos].present?
       hibah = hibah.where("upper(nama) like ?", "%#{params[:organisasi_bansos].upcase}%") if params[:organisasi_bansos].present?
-      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah")
+      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah_pertimbangan")
       @judul = 'PERTIMBANGAN PROPOSAL HIBAH'
       render "admin/proposal/index_global"
     end
@@ -194,10 +193,10 @@ module Admin
     def penetapan
       before_penetapan
       hibah = Hibah.all
-      hibah = hibah.where("status= ?", 5)
       hibah = hibah.where("upper(judul_kegiatan) like ?", "%#{params[:judul_bansos].upcase}%") if params[:judul_bansos].present?
       hibah = hibah.where("upper(nama) like ?", "%#{params[:organisasi_bansos].upcase}%") if params[:organisasi_bansos].present?
-      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah")
+      hibah = hibah.order("created_at desc")
+      @hibahs = smart_listing_create(:hibah, hibah, partial: "admin/proposal/listing_hibah_penetapan")
       @judul = 'PENETAPAN PROPOSAL HIBAH'
       render "admin/proposal/index_global"
     end

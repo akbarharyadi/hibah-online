@@ -5,7 +5,9 @@
       %th Nomor
       %th Nama Organisasi
       %th Judul Kegiatan
+      %th Tanggal Masuk
       %th Tahap Proposal
+      %th Tahap Sebelumnya
       %th Pemohon
       %th
   %tbody
@@ -15,23 +17,58 @@
           %th= link_to raw(hibah.created_at.to_time.to_i.to_s + '#' + hibah.id.to_s), hibah, target: '_blank'
           %td= hibah.nama
           %td= hibah.judul_kegiatan
+          %td= hibah.created_at.to_time.strftime("%d %h %Y %H:%m")
           %td= hibah.status_hibah
-          %td= (hibah.user.try(:nama_ketua).nil? ? '' : hibah.user.try(:nama_ketua)) + (hibah.user.present? ? ' (' + hibah.user.role.try(:name) + ')' : '')
-          - if hibah.status == 0 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 4)
-            %td= link_to raw(' Mulai Seleksi <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_seleksi_path(hibah.id.to_s), class: 'right btn'
-          - elsif hibah.status == 1 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 3)
-            %td= link_to raw(' Mulai Disposisi <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_disposisi_path(hibah.id.to_s), class: 'right btn'
-          - elsif hibah.status == 2 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 4)
-            %td= link_to raw(' Mulai Distribusi <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_distribusi_path(hibah.id.to_s), class: 'right btn'
-          - elsif hibah.status == 3 and (current_user.role_id == 1 or current_user.role_id == 2 or (current_user.role_id == 5 and current_user.dina_id == hibah.distribusis.last.try(:dina_id)))
-            %td= link_to raw(' Mulai Evaluasi <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_evaluasi_path(hibah.id.to_s), class: 'right btn'
-          - elsif hibah.status == 4 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 6 )
-            %td= link_to raw(' Mulai Pertimbangan <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_pertimbangan_path(hibah.id.to_s), class: 'right btn'
-          - elsif hibah.status == 5 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 3 )
-            %td= link_to raw(' Mulai Penetapan <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_penetapan_path(hibah.id.to_s), class: 'right btn'
+          - if hibah.status == 0
+            %td -
+          - elsif hibah.status == 1
+            - if hibah.seleksis.last.present?
+              %td= raw("Tahap Seleksi<br>" + hibah.seleksis.last.try(:updated_at).strftime("%d %h %Y %H:%m") + "<br>Oleh : #{(hibah.seleksis.last.user.present? ? ' (' + hibah.seleksis.last.user.try(:email) + ')' : '')}")
+            - else
+              %td= "not found"
+          - elsif hibah.status == 2
+            - if hibah.disposisis.last.present?
+              %td= raw("Tahap Disposisi<br>" + hibah.disposisis.last.try(:updated_at).strftime("%d %h %Y %H:%m") + "<br>Oleh : #{(hibah.disposisis.last.user.present? ? ' (' + hibah.disposisis.last.user.try(:email) + ')' : '')}")
+            - else
+              %td= "not found"
+          - elsif hibah.status == 3
+            - if hibah.distribusis.last.present?
+              %td= raw("Tahap Distribusi<br>" + hibah.distribusis.last.try(:updated_at).strftime("%d %h %Y %H:%m") + "<br>Oleh : #{(hibah.distribusis.last.user.present? ? ' (' + hibah.distribusis.last.user.try(:email) + ')' : '')}")
+            - else
+              %td= "not found"
+          - elsif hibah.status == 4
+            - if hibah.evaluasis.last.present?
+              %td= raw("Tahap Evaluasi<br>" + hibah.evaluasis.last.try(:updated_at).strftime("%d %h %Y %H:%m") + "<br>Oleh : #{(hibah.evaluasis.last.user.present? ? ' (' + hibah.evaluasis.last.user.try(:email) + ')' : '')}")
+            - else
+              %td= "not found"
+          - elsif hibah.status == 5
+            - if hibah.pertimbangans.last.present?
+              %td= raw("Tahap Pertimbangan<br>" + hibah.pertimbangans.last.try(:updated_at).strftime("%d %h %Y %H:%m") + "<br>Oleh : #{(hibah.pertimbangans.last.user.present? ? ' (' + hibah.pertimbangans.last.user.try(:email) + ')' : '')}")
+            - else
+              %td= "not found"
+          - elsif hibah.status == 6
+            - if hibah.penetapans.last.present?
+              %td= raw("Tahap Penetapan<br>" + hibah.penetapans.last.try(:updated_at).strftime("%d %h %Y %H:%m") + "<br>Oleh : #{(hibah.penetapans.last.user.present? ? ' (' + hibah.penetapans.last.user.try(:email) + ')' : '')}")
+            - else
+              %td= "not found"
           - else
             %td
+          %td= (hibah.user.try(:nama_ketua).nil? ? '' : hibah.user.try(:nama_ketua)) + (hibah.user.present? ? ' (' + hibah.user.role.try(:name) + ')' : '')
+          - if hibah.status == 0 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 4)
+            %td.middle= link_to raw(' <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_seleksi_path(hibah.id.to_s), class: 'right btn'
+          - elsif hibah.status == 1 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 3)
+            %td.middle= link_to raw(' <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_disposisi_path(hibah.id.to_s), class: 'right btn'
+          - elsif hibah.status == 2 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 4)
+            %td.middle= link_to raw(' <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_distribusi_path(hibah.id.to_s), class: 'right btn'
+          - elsif hibah.status == 3 and (current_user.role_id == 1 or current_user.role_id == 2 or (current_user.role_id == 5 and current_user.dina_id == hibah.distribusis.last.try(:dina_id)))
+            %td.middle= link_to raw(' <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_evaluasi_path(hibah.id.to_s), class: 'right btn'
+          - elsif hibah.status == 4 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 6 )
+            %td.middle= link_to raw(' <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_pertimbangan_path(hibah.id.to_s), class: 'right btn'
+          - elsif hibah.status == 5 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 3 )
+            %td.middle= link_to raw(' <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_penetapan_path(hibah.id.to_s), class: 'right btn'
+          - else
+            %td.middle
     - else
       %tr
-        %th{colspan:4} Data tidak ditemukan!
+        %th{colspan:6} Data tidak ditemukan!
   = smart_listing.paginate

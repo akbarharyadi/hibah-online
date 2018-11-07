@@ -1,0 +1,32 @@
+
+%table.bordered.highlight.responsive-table.table-bordered
+  %thead
+    %tr
+      %th Nomor
+      %th Nama Organisasi
+      %th Judul Kegiatan
+      %th Tahap
+      %th Status
+      %th Pemohon
+      %th
+  %tbody
+    - unless smart_listing.empty?
+      - smart_listing.collection.each do |hibah|
+        %tr{class: hibah.status == 7 ? 'text-red' : (hibah.pertimbangans.last.present? ? 'text-green' : '') }
+          %th= link_to raw(hibah.created_at.to_time.to_i.to_s + '#' + hibah.id.to_s), hibah, target: '_blank'
+          %td= hibah.nama
+          %td= hibah.judul_kegiatan
+          %td= hibah.status_hibah
+          - if hibah.pertimbangans.last.present?
+            %td= raw("Tahap Pertimbangan<br>" + hibah.pertimbangans.last.try(:updated_at).strftime("%d %h %Y %H:%m") + "<br>Oleh : #{(hibah.pertimbangans.last.user.present? ? ' (' + hibah.pertimbangans.last.user.try(:email) + ')' : '')}")
+          - else
+            %td= ""
+          %td= (hibah.user.try(:nama_ketua).nil? ? '' : hibah.user.try(:nama_ketua)) + (hibah.user.present? ? ' (' + hibah.user.role.try(:name) + ')' : '')
+          - if hibah.status == 4 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 6 )
+            %td.middle= link_to raw(' <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_pertimbangan_path(hibah.id.to_s), class: 'right btn'
+          - else
+            %td.middle
+    - else
+      %tr
+        %th{colspan:6} Data tidak ditemukan!
+  = smart_listing.paginate
