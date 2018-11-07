@@ -1,8 +1,8 @@
 module Admin
     class PelaporansController < Admin::ApplicationController
-      before_action :set_role_admin
 
       def report_hibah
+        before_pelaporan
         respond_to do |format|
             format.html
             format.xlsx do
@@ -23,6 +23,7 @@ module Admin
       end
 
       def report_penetapan
+        before_pelaporan
         respond_to do |format|
             format.html
             format.xlsx do
@@ -41,5 +42,9 @@ module Admin
             end
         end
       end
+    end
+
+    def before_pelaporan
+        not_found unless (1..6).include? current_user.role_id
     end
 end
