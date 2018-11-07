@@ -16,7 +16,7 @@
           %td= hibah.nama
           %td= hibah.judul_kegiatan
           %td= hibah.status_hibah
-          %td= (hibah.user.try(:nama_ketua).nil? ? '' : hibah.user.try(:nama_ketua)) + ' (' + hibah.user.role.try(:name) + ')'
+          %td= (hibah.user.try(:nama_ketua).nil? ? '' : hibah.user.try(:nama_ketua)) + (hibah.user.present? ? ' (' + hibah.user.role.try(:name) + ')' : '')
           - if hibah.status == 0 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 4)
             %td= link_to raw(' Mulai Seleksi <i class="material-icons left">arrow_forward_outline</i>'), admin_proses_seleksi_path(hibah.id.to_s), class: 'right btn'
           - elsif hibah.status == 1 and (current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 3)
