@@ -42,9 +42,9 @@ module Admin
             end
         end
       end
-    end
 
-    def before_pelaporan
-        not_found unless (1..6).include? current_user.role_id
+      def before_pelaporan
+          not_found unless (1..6).include? current_user.role_id
+      end
     end
 end
