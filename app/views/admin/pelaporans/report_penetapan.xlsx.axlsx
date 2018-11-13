@@ -53,5 +53,4 @@ wb.add_worksheet(name: "Laporan Hibah Bansos") do |sheet|
 
   sheet.add_style 'E5:F'+(count).to_s, num_fmt: 4
   sheet.add_style 'H5:H'+(count).to_s, num_fmt: 9
-  sheet.add_style "A#{count}:I{count}", b: true
 end

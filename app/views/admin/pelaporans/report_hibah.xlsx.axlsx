@@ -46,5 +46,4 @@ wb.add_worksheet(name: "Laporan Hibah Bansos") do |sheet|
   ], :widths => [:ignore]
 
   sheet.add_style 'F5:G'+(count).to_s, num_fmt: 4
-  sheet.add_style "A#{count}:G{count}", b: true
 end
